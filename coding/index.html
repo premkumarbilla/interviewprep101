@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coding Tracker · Interview Prep 101</title>
+<meta name="description" content="A coding interview problem tracker grouped by pattern is coming to Interview Prep 101.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/coding/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#15202B; --muted:#5A6775; --rule:#DCE2E9;
+  --accent:#2556C4; --accent-soft:#E6EDFB; --tag:#EEF1F5; --done:#1F8A5B; --track:#E4E9EF;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
+    --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --track:#222C37;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
+  --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --track:#222C37;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);padding-inline:16px;padding-block:56px 64px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+header{display:flex;flex-direction:column;gap:14px;max-width:680px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(36px,6vw,60px)/1.02 var(--cond);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin:0;color:var(--muted);font-size:18px;max-width:58ch}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.track{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:24px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+a.track:hover{border-color:var(--accent);transform:translateY(-2px)}
+a.track:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.track .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.status{font:500 12px var(--mono);letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:3px 8px}
+.status.live{background:var(--accent-soft);color:var(--accent)}
+.status.soon{background:var(--tag);color:var(--muted)}
+.track h2{font:600 28px/1.1 var(--cond);margin:0}
+.track p{margin:0;color:var(--muted);font-size:15px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.facts b{color:var(--ink);font-weight:500}
+.prog{display:flex;flex-direction:column;gap:6px}
+.prog .row{display:flex;justify-content:space-between;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:6px;background:var(--track);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--done);width:0}
+.go{margin-top:auto;font:600 15px var(--sans);color:var(--accent)}
+.track.soon .go{color:var(--muted)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;border-top:1px solid var(--rule);padding-top:28px}
+.how h3{font:600 17px var(--cond);margin:0 0 4px}
+.how p{margin:0;font-size:14px;color:var(--muted)}
+ul.plan{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--muted);max-width:60ch}
+ul.plan b{color:var(--ink);font-weight:600}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;font:500 13px var(--sans);color:var(--muted)}
+.crumbs a{color:var(--accent);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;font:600 15px var(--sans);text-decoration:none;border-radius:6px;padding:10px 16px;border:1px solid var(--rule);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--rule);padding-top:16px;font-size:13px;color:var(--muted)}
+footer p{margin:0;max-width:80ch}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.track{transition:none}a.track:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span></nav>
+    <span class="eyebrow"><span class="status soon">Coming soon</span></span>
+    <h1>Coding Tracker</h1>
+    <p class="lede">A checklist of coding interview problems, grouped by the pattern each one teaches, so you can see which patterns you've covered and which still need work.</p>
+  </header>
+  <section aria-label="What's planned">
+    <ul class="plan">
+      <li><b>Problems grouped by pattern:</b> arrays and hashing, two pointers, sliding window, stacks, binary search, linked lists, trees, graphs, heaps, backtracking and dynamic programming.</li>
+      <li><b>Difficulty and progress:</b> tick off problems and see progress for each pattern and overall.</li>
+      <li><b>Links out to each problem</b> on the site where you practice it.</li>
+      <li><b>Same as System Design:</b> free, no sign-up, progress saved in your browser, with export and import.</li>
+    </ul>
+  </section>
+  <div class="cta">
+    <a class="btn primary" href="../system-design/">Open System Design tracker</a>
+    <a class="btn" href="../">Back to Interview Prep 101</a>
+  </div>
+  <footer><p>An unofficial study aid. Part of <a href="../">Interview Prep 101</a>.</p></footer>
+</div>
+</body>
+</html>
