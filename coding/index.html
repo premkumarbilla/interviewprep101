@@ -3,17 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coding Tracker · Interview Prep 101</title>
-<meta name="description" content="A coding interview problem tracker grouped by pattern is coming to Interview Prep 101.">
-<meta name="robots" content="noindex, follow">
+<title>5-Day Coding Sprint · Interview Prep 101</title>
+<meta name="description" content="A 5-day coding interview sprint: 10 algorithm patterns common in Microsoft interviews, 5 LeetCode problems each, with hints and a progress checklist.">
 <link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/coding/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Interview Prep 101">
+<meta property="og:title" content="5-Day Coding Sprint">
+<meta property="og:description" content="10 algorithm patterns common in Microsoft interviews, 5 LeetCode problems each, with hints and a progress checklist.">
+<meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/coding/">
+<meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
   --bg:#F5F7FA; --surface:#FFFFFF; --ink:#15202B; --muted:#5A6775; --rule:#DCE2E9;
-  --accent:#2556C4; --accent-soft:#E6EDFB; --tag:#EEF1F5; --done:#1F8A5B; --track:#E4E9EF;
+  --accent:#2556C4; --accent-soft:#E6EDFB; --tag:#EEF1F5; --done:#1F8A5B; --done-soft:#E3F3EB; --track:#E4E9EF;
+  --easy:#1F8A5B; --easy-bg:#E3F3EB; --med:#9A6700; --med-bg:#FBF0D6; --hard:#B42318; --hard-bg:#FCE7E5; --star:#C77C02; --danger:#B42318;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -21,77 +29,233 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){color-scheme:dark;
     --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
-    --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --track:#222C37;}
+    --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --done-soft:#12291F; --track:#222C37;
+    --easy:#4CC38A; --easy-bg:#12291F; --med:#E2B64A; --med-bg:#2E2610; --hard:#F97066; --hard-bg:#3A1714; --star:#F0B43C; --danger:#F97066;}
 }
 :root[data-theme="dark"]{color-scheme:dark;
   --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
-  --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --track:#222C37;}
+  --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --done-soft:#12291F; --track:#222C37;
+  --easy:#4CC38A; --easy-bg:#12291F; --med:#E2B64A; --med-bg:#2E2610; --hard:#F97066; --hard-bg:#3A1714; --star:#F0B43C; --danger:#F97066;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);padding-inline:16px;padding-block:56px 64px}
-.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
-header{display:flex;flex-direction:column;gap:14px;max-width:680px}
-.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-h1{font:700 clamp(36px,6vw,60px)/1.02 var(--cond);margin:0;letter-spacing:-.015em;text-wrap:balance}
-.lede{margin:0;color:var(--muted);font-size:18px;max-width:58ch}
-.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.track{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:24px;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
-a.track:hover{border-color:var(--accent);transform:translateY(-2px)}
-a.track:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.track .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.status{font:500 12px var(--mono);letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:3px 8px}
-.status.live{background:var(--accent-soft);color:var(--accent)}
-.status.soon{background:var(--tag);color:var(--muted)}
-.track h2{font:600 28px/1.1 var(--cond);margin:0}
-.track p{margin:0;color:var(--muted);font-size:15px}
-.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.facts b{color:var(--ink);font-weight:500}
-.prog{display:flex;flex-direction:column;gap:6px}
-.prog .row{display:flex;justify-content:space-between;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.bar{height:6px;background:var(--track);border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--done);width:0}
-.go{margin-top:auto;font:600 15px var(--sans);color:var(--accent)}
-.track.soon .go{color:var(--muted)}
-.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;border-top:1px solid var(--rule);padding-top:28px}
-.how h3{font:600 17px var(--cond);margin:0 0 4px}
-.how p{margin:0;font-size:14px;color:var(--muted)}
-ul.plan{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--muted);max-width:60ch}
-ul.plan b{color:var(--ink);font-weight:600}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+header{display:flex;flex-direction:column;gap:14px}
 .crumbs{display:flex;flex-wrap:wrap;gap:8px;font:500 13px var(--sans);color:var(--muted)}
-.crumbs a{color:var(--accent);text-decoration:none}
-.crumbs a:hover{text-decoration:underline}
-.cta{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;font:600 15px var(--sans);text-decoration:none;border-radius:6px;padding:10px 16px;border:1px solid var(--rule);color:var(--ink);background:var(--surface)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.btn:hover{border-color:var(--accent)}
+.crumbs a{color:var(--accent);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:68ch}
+.overall{display:flex;flex-direction:column;gap:6px;max-width:640px}
+.overall .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.overall .row b{color:var(--ink);font-weight:500}
+.bar{height:6px;background:var(--track);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--done);border-radius:3px;transition:width .25s ease}
+.overall .bar{height:10px;border-radius:5px}
+
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.day-card{display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;color:var(--ink);text-decoration:none;min-width:0}
+.day-card:hover{border-color:var(--accent)}
+.day-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.day-card .dn{font:500 12px var(--mono);color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
+.day-card .dt{font:600 15px/1.25 var(--cond)}
+.day-card .dc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.day-card.complete .dc{color:var(--done)}
+@media (max-width:760px){.days{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.toggle input{accent-color:var(--done);width:16px;height:16px}
+.btn{font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:7px 12px;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.danger{color:var(--danger)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);align-items:center}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+
+.tips{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 28px}
+.tips h2{grid-column:1/-1;margin:0;font:600 18px var(--cond)}
+.tips div h3{margin:0 0 2px;font:600 15px var(--sans)}
+.tips div p{margin:0;font-size:14px;color:var(--muted)}
+
+section.day{display:flex;flex-direction:column;gap:22px;scroll-margin-top:16px}
+.day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.day-head .dn{font:500 13px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+.day-head h2{margin:0;font:700 26px/1.15 var(--cond);flex:1 1 240px}
+.day-head .dc{font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.pattern h3{margin:0;font:600 19px/1.2 var(--cond);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pattern h3 .pc{font:12px var(--mono);color:var(--muted);font-weight:400}
+.pattern .idea{margin:4px 0 8px;font-size:14px;color:var(--muted);max-width:75ch}
+ol.probs{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+ol.probs li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 10px;padding:10px 14px 10px 10px;border-bottom:1px solid var(--rule);align-items:start}
+ol.probs li:last-child{border-bottom:0}
+ol.probs li.done{background:linear-gradient(90deg,var(--done-soft),transparent 70%)}
+.chk{width:18px;height:18px;margin:2px 0 0 4px;accent-color:var(--done);cursor:pointer}
+.pt{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;min-width:0}
+.pt a{color:var(--ink);text-decoration:none;font-weight:500}
+.pt a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.pt a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li.done .pt a{color:var(--muted)}
+.num{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.star{color:var(--star);font-size:13px}
+.diff{font:500 11px var(--mono);border-radius:3px;padding:2px 7px;white-space:nowrap;letter-spacing:.02em}
+.diff.E{color:var(--easy);background:var(--easy-bg)}.diff.M{color:var(--med);background:var(--med-bg)}.diff.H{color:var(--hard);background:var(--hard-bg)}
+details.hint{grid-column:2/-1;font-size:13.5px;color:var(--muted)}
+details.hint summary{cursor:pointer;color:var(--accent);font-size:13px;width:max-content}
+details.hint summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details.hint p{margin:4px 0 0;max-width:75ch}
+.empty{color:var(--muted);font-size:14px;padding:4px 0}
 footer{border-top:1px solid var(--rule);padding-top:16px;font-size:13px;color:var(--muted)}
-footer p{margin:0;max-width:80ch}
+footer p{margin:0 0 6px;max-width:80ch}
 footer a{color:var(--accent)}
-@media (prefers-reduced-motion:reduce){.track{transition:none}a.track:hover{transform:none}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 </head>
 <body>
+
 <div class="wrap">
   <header>
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span></nav>
-    <span class="eyebrow"><span class="status soon">Coming soon</span></span>
-    <h1>Coding Tracker</h1>
-    <p class="lede">A checklist of coding interview problems, grouped by the pattern each one teaches, so you can see which patterns you've covered and which still need work.</p>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span><span aria-hidden="true">·</span><a href="../system-design/">System Design</a></nav>
+    <span class="eyebrow">Coding · Online assessment prep</span>
+    <h1>5-Day Coding Sprint</h1>
+    <p class="lede">Ten algorithm patterns that come up often in Microsoft coding interviews, with five LeetCode problems each, ordered from warm-up to stretch. Do two patterns a day. The ★ problems are the core 30. If you're short on time, do those first.</p>
+    <div class="overall" aria-live="polite">
+      <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
+      <div class="bar"><i id="ovBar"></i></div>
+    </div>
+    <nav class="days" id="dayCards" aria-label="Days"></nav>
+    <div class="tools">
+      <label class="toggle" for="coreOnly"><input id="coreOnly" type="checkbox"> Core ★ only</label>
+      <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide solved</label>
+      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span></span>
+      <button class="btn danger" id="resetBtn" type="button">Reset</button>
+      <span class="confirm" id="resetConfirm" hidden>Untick all solved problems? <button class="btn danger" id="resetYes" type="button">Yes, reset</button><button class="btn" id="resetNo" type="button">Cancel</button></span>
+    </div>
   </header>
-  <section aria-label="What's planned">
-    <ul class="plan">
-      <li><b>Problems grouped by pattern:</b> arrays and hashing, two pointers, sliding window, stacks, binary search, linked lists, trees, graphs, heaps, backtracking and dynamic programming.</li>
-      <li><b>Difficulty and progress:</b> tick off problems and see progress for each pattern and overall.</li>
-      <li><b>Links out to each problem</b> on the site where you practice it.</li>
-      <li><b>Same as System Design:</b> free, no sign-up, progress saved in your browser, with export and import.</li>
-    </ul>
+
+  <section class="tips" aria-label="How to use this plan">
+    <h2>How to work each problem</h2>
+    <div><h3>Time-box it</h3><p>Give an Easy 15 minutes and a Medium 25–30. If you're stuck, open the hint. If you're still stuck, read a solution, then close it and write it yourself.</p></div>
+    <div><h3>Say the pattern first</h3><p>Before coding, name the pattern and the complexity you're aiming for. That habit is what transfers to new problems in the assessment.</p></div>
+    <div><h3>Test edge cases yourself</h3><p>Empty input, one element, duplicates, negatives, and the largest size the problem allows. Assessments often grade on hidden tests like these.</p></div>
+    <div><h3>Redo what you missed</h3><p>Any problem you needed the solution for, solve again from scratch the next morning before starting that day's set.</p></div>
   </section>
-  <div class="cta">
-    <a class="btn primary" href="../system-design/">Open System Design tracker</a>
-    <a class="btn" href="../">Back to Interview Prep 101</a>
-  </div>
-  <footer><p>An unofficial study aid. Part of <a href="../">Interview Prep 101</a>.</p></footer>
+
+  <main id="main"></main>
+
+  <footer>
+    <p>Problem choices reflect patterns widely reported in Microsoft interviews. They are not an official Microsoft list. Links go to LeetCode, and all problems here are free.</p>
+    <p>Your progress is saved in this browser only. Part of <a href="../">Interview Prep 101</a>.</p>
+  </footer>
 </div>
+
+<script>
+const PLAN=[
+ {day:1,title:"Warm-up: arrays and pointers",patterns:[
+  {name:"Arrays & Hashing",idea:"Trade memory for speed: a hash map or set turns repeated O(n) lookups into O(1). Prefix sums answer range questions in O(1).",probs:[
+   ["two-sum",1,"Two Sum","E",1,"One pass with a map of value → index. For each number, check whether target − number is already in the map."],
+   ["group-anagrams",49,"Group Anagrams","M",1,"Use a canonical key per word: the sorted letters, or a 26-count tuple. Group words by key in a map."],
+   ["product-of-array-except-self",238,"Product of Array Except Self","M",1,"Build prefix products left to right, then multiply by suffix products right to left. No division, O(1) extra space besides the output."],
+   ["longest-consecutive-sequence",128,"Longest Consecutive Sequence","M",0,"Put everything in a set. Only start counting from numbers where n − 1 isn't in the set, so each run is walked once. O(n)."],
+   ["subarray-sum-equals-k",560,"Subarray Sum Equals K","M",0,"Running prefix sum plus a map of prefix-sum counts. At each step, add count[prefix − k]. Start with count[0] = 1."]]},
+  {name:"Two Pointers",idea:"On sorted data or from both ends, move one pointer at a time based on a comparison. Usually turns O(n²) into O(n).",probs:[
+   ["valid-palindrome",125,"Valid Palindrome","E",1,"Pointers at both ends. Skip non-alphanumeric characters and compare lowercase letters while moving inward."],
+   ["3sum",15,"3Sum","M",1,"Sort. Fix i, then run two pointers on the rest looking for −nums[i]. Skip duplicates for i and after each match."],
+   ["container-with-most-water",11,"Container With Most Water","M",1,"Start at both ends and always move the shorter side inward, since the shorter wall caps the area."],
+   ["sort-colors",75,"Sort Colors","M",0,"Dutch national flag: low, mid and high pointers. Swap 0s to low, 2s to high, and only advance mid when you didn't swap from high."],
+   ["trapping-rain-water",42,"Trapping Rain Water","H",0,"Two pointers with leftMax and rightMax. Move the side with the smaller max, since water there is bounded by that max."]]}]},
+ {day:2,title:"Strings, windows and stacks",patterns:[
+  {name:"Sliding Window",idea:"Grow the right edge, shrink the left edge while the window is invalid, and track the best window seen. Each index enters and leaves once, so O(n).",probs:[
+   ["best-time-to-buy-and-sell-stock",121,"Best Time to Buy and Sell Stock","E",1,"Track the minimum price so far. At each day, the best profit is price − minimum."],
+   ["longest-substring-without-repeating-characters",3,"Longest Substring Without Repeating Characters","M",1,"Map of character → last index. When you see a repeat inside the window, jump left to lastIndex + 1."],
+   ["longest-repeating-character-replacement",424,"Longest Repeating Character Replacement","M",1,"Window is valid while windowLength − maxCount ≤ k. Keep counts of letters and shrink when invalid."],
+   ["find-all-anagrams-in-a-string",438,"Find All Anagrams in a String","M",0,"Fixed-size window of length p. Compare 26-letter counts as you slide, adding one character and removing one."],
+   ["minimum-window-substring",76,"Minimum Window Substring","H",0,"Need-counts for t and a 'missing' counter. Expand right until nothing is missing, then shrink left to minimize, recording the best window."]]},
+  {name:"Stack",idea:"Use a stack when the most recent unmatched item decides what happens next: brackets, nesting, and 'next greater element' (monotonic stack).",probs:[
+   ["valid-parentheses",20,"Valid Parentheses","E",1,"Push openers. On a closer, the top of the stack must be its matching opener. The stack must be empty at the end."],
+   ["min-stack",155,"Min Stack","M",1,"Store pairs of (value, minimum so far), or keep a second stack of minimums."],
+   ["evaluate-reverse-polish-notation",150,"Evaluate Reverse Polish Notation","M",0,"Push numbers. On an operator, pop b then a and push a op b. Division truncates toward zero."],
+   ["daily-temperatures",739,"Daily Temperatures","M",1,"Monotonic decreasing stack of indices. When a warmer day arrives, pop and fill in the answer for each popped index."],
+   ["decode-string",394,"Decode String","M",0,"Two stacks, one for counts and one for partial strings. On ']', pop and repeat the current string, then append it to the previous one."]]}]},
+ {day:3,title:"Binary search and dynamic programming",patterns:[
+  {name:"Binary Search",idea:"Halve the search space each step. Works on sorted arrays and also on answer spaces: 'find the smallest x where a condition becomes true'.",probs:[
+   ["binary-search",704,"Binary Search","E",1,"Standard lo ≤ hi loop with mid = lo + (hi − lo) / 2. Get the boundary updates exactly right here, as later problems reuse them."],
+   ["search-a-2d-matrix",74,"Search a 2D Matrix","M",0,"Treat the matrix as one sorted array of length m·n. Index i maps to row i / n and column i % n."],
+   ["search-in-rotated-sorted-array",33,"Search in Rotated Sorted Array","M",1,"At each mid, one half is sorted. Check whether the target lies in that sorted half, then discard the other half."],
+   ["find-minimum-in-rotated-sorted-array",153,"Find Minimum in Rotated Sorted Array","M",0,"Compare mid with hi. If nums[mid] > nums[hi], the minimum is to the right; otherwise it's at mid or to the left."],
+   ["koko-eating-bananas",875,"Koko Eating Bananas","M",1,"Binary search on speed from 1 to max(piles). For each speed, total hours = Σ ceil(pile / speed). Find the smallest speed that fits h."]]},
+  {name:"Dynamic Programming",idea:"Define what dp[i] means in one sentence, write the recurrence from smaller cases, set base cases, then pick an order that fills dependencies first.",probs:[
+   ["climbing-stairs",70,"Climbing Stairs","E",1,"dp[i] = dp[i−1] + dp[i−2]. You only need the last two values."],
+   ["house-robber",198,"House Robber","M",1,"dp[i] = max(dp[i−1], dp[i−2] + nums[i]): skip this house or rob it."],
+   ["coin-change",322,"Coin Change","M",1,"dp[amount] = min over coins of dp[amount − coin] + 1. Initialize to infinity, with dp[0] = 0."],
+   ["word-break",139,"Word Break","M",0,"dp[i] is true if some j < i has dp[j] true and s[j:i] in the dictionary. Use a set for the words."],
+   ["longest-palindromic-substring",5,"Longest Palindromic Substring","M",0,"Expand around each center (2n − 1 centers, odd and even lengths) and keep the longest. O(n²) time, O(1) space."]]}]},
+ {day:4,title:"Trees and graphs",patterns:[
+  {name:"Trees (DFS & BFS)",idea:"Most tree problems are a recursive DFS that returns something to its parent. Use BFS with a queue when the problem is about levels.",probs:[
+   ["maximum-depth-of-binary-tree",104,"Maximum Depth of Binary Tree","E",1,"Depth = 1 + max(depth(left), depth(right)). An empty node has depth 0."],
+   ["binary-tree-level-order-traversal",102,"Binary Tree Level Order Traversal","M",1,"BFS with a queue. Process one level at a time by looping over the queue's size at the start of each level."],
+   ["validate-binary-search-tree",98,"Validate Binary Search Tree","M",1,"Pass down (low, high) bounds, not just a comparison with the parent. Or check that an in-order traversal is strictly increasing."],
+   ["lowest-common-ancestor-of-a-binary-tree",236,"Lowest Common Ancestor of a Binary Tree","M",0,"Recurse. If the node is p or q, return it. If both sides return something, this node is the LCA; otherwise pass up whichever side isn't null."],
+   ["serialize-and-deserialize-binary-tree",297,"Serialize and Deserialize Binary Tree","H",0,"Preorder with a null marker, e.g. '1,2,#,#,3,#,#'. Deserialize by reading tokens with an iterator in the same order."]]},
+  {name:"Graphs",idea:"Model the input as nodes and edges, then choose BFS for shortest steps, DFS for exploring or counting components, or topological sort for dependencies. Track visited nodes.",probs:[
+   ["number-of-islands",200,"Number of Islands","M",1,"Scan the grid. On each unvisited land cell, count an island and flood-fill it with DFS or BFS, marking cells visited."],
+   ["rotting-oranges",994,"Rotting Oranges","M",1,"Multi-source BFS: queue all rotten oranges at time 0 and spread minute by minute. Return −1 if fresh ones remain."],
+   ["course-schedule",207,"Course Schedule","M",1,"Detect a cycle in a directed graph. Kahn's algorithm: repeatedly take nodes with in-degree 0. It's possible if every node is taken."],
+   ["clone-graph",133,"Clone Graph","M",0,"DFS or BFS with a map of original → copy. Create a copy the first time you see a node, then wire up neighbors."],
+   ["word-ladder",127,"Word Ladder","H",0,"BFS from the start word. Neighbors are words differing by one letter; use wildcard patterns like h*t to find them quickly."]]}]},
+ {day:5,title:"Linked lists and heaps",patterns:[
+  {name:"Linked List",idea:"Draw the pointers before coding. A dummy head removes edge cases, and fast and slow pointers find middles and cycles.",probs:[
+   ["reverse-linked-list",206,"Reverse Linked List","E",1,"Iterate with prev, curr and next. Point curr.next at prev, then advance. Also try it recursively."],
+   ["merge-two-sorted-lists",21,"Merge Two Sorted Lists","E",1,"Dummy head plus a tail pointer. Attach the smaller node each step, then attach whatever remains."],
+   ["add-two-numbers",2,"Add Two Numbers","M",0,"Digits are stored in reverse, so walk both lists together, adding with a carry. Don't forget a final carry."],
+   ["copy-list-with-random-pointer",138,"Copy List with Random Pointer","M",0,"Map of original → copy in two passes. Or, for O(1) space, weave copies between originals, set random pointers, then unweave."],
+   ["lru-cache",146,"LRU Cache","M",1,"Hash map of key → node, plus a doubly linked list ordered by recency. Move a node to the front on get or put, and evict from the tail."]]},
+  {name:"Heap / Priority Queue",idea:"Use a heap when you repeatedly need the smallest or largest item. For 'top k', keep a heap of size k.",probs:[
+   ["kth-largest-element-in-a-stream",703,"Kth Largest Element in a Stream","E",0,"Keep a min-heap of size k. Its top is always the kth largest."],
+   ["kth-largest-element-in-an-array",215,"Kth Largest Element in an Array","M",1,"A min-heap of size k gives O(n log k). Quickselect averages O(n) and is worth knowing."],
+   ["top-k-frequent-elements",347,"Top K Frequent Elements","M",1,"Count with a map, then keep a size-k heap by frequency. Or use bucket sort by frequency for O(n)."],
+   ["merge-k-sorted-lists",23,"Merge k Sorted Lists","H",1,"Min-heap of the current head from each list. Pop the smallest, append it, and push its next node. O(N log k)."],
+   ["find-median-from-data-stream",295,"Find Median from Data Stream","H",0,"Two heaps: a max-heap for the lower half and a min-heap for the upper half. Rebalance so their sizes differ by at most 1."]]}]}
+];
+const STORE="coding-sprint";
+const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,slug:r[0],core:!!r[4]}))));
+let st={done:new Set(),core:false,hide:false};
+try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.core=!!o.core;st.hide=!!o.hide}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],core:st.core,hide:st.hide}))}catch(e){}}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+function cnt(filter){const l=ALL.filter(filter);return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
+
+function renderStats(){
+  const all=cnt(()=>true),core=cnt(a=>a.core);
+  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved · core ★ ${core.d}/${core.t}`;
+  $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
+  $("dayCards").innerHTML=PLAN.map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("");
+  PLAN.forEach(d=>{const c=cnt(a=>a.day===d.day),el=$("dc"+d.day);if(el)el.textContent=`${c.d} / ${c.t} solved`});
+  PLAN.forEach(d=>d.patterns.forEach((p,i)=>{const el=$(`pc${d.day}-${i}`);if(el){const n=p.probs.filter(r=>st.done.has(r[0])).length;el.textContent=`${n}/${p.probs.length}`}}));
+}
+function render(){
+  $("coreOnly").checked=st.core;$("hideDone").checked=st.hide;
+  $("main").innerHTML=PLAN.map(d=>`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
+    d.patterns.map((p,i)=>{
+      const rows=p.probs.filter(r=>(!st.core||r[4])&&(!st.hide||!st.done.has(r[0])));
+      return `<div class="pattern"><h3>${esc(p.name)} <span class="pc" id="pc${d.day}-${i}"></span></h3><p class="idea">${esc(p.idea)}</p>`+
+      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
+  renderStats();
+}
+document.addEventListener("change",e=>{
+  if(e.target.matches(".chk")){const s=e.target.dataset.slug;if(e.target.checked)st.done.add(s);else st.done.delete(s);save();
+    if(st.hide&&e.target.checked){render();return}
+    e.target.closest("li").classList.toggle("done",e.target.checked);renderStats();}
+});
+$("coreOnly").addEventListener("change",e=>{st.core=e.target.checked;save();render()});
+$("hideDone").addEventListener("change",e=>{st.hide=e.target.checked;save();render()});
+$("resetBtn").addEventListener("click",()=>{$("resetConfirm").hidden=false});
+$("resetNo").addEventListener("click",()=>{$("resetConfirm").hidden=true});
+$("resetYes").addEventListener("click",()=>{st.done.clear();save();$("resetConfirm").hidden=true;render()});
+render();
+</script>
 </body>
 </html>
