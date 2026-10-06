@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>5-Day Coding Sprint · Interview Prep 101</title>
-<meta name="description" content="A 5-day coding interview sprint: 16 algorithm patterns and 226 LeetCode problems, including every problem on the Microsoft list from the last 3 months, with hints and a progress checklist.">
+<title>Coding Sprint · Interview Prep 101</title>
+<meta name="description" content="A coding interview sprint: 16 algorithm patterns and 226 LeetCode problems, including every problem on the Microsoft list from the last 3 months, with hints and a progress checklist.">
 <link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Interview Prep 101">
-<meta property="og:title" content="5-Day Coding Sprint">
+<meta property="og:title" content="Coding Sprint">
 <meta property="og:description" content="16 algorithm patterns and 226 LeetCode problems, including the Microsoft last-3-months list, with hints and a progress checklist.">
 <meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
@@ -53,15 +53,14 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .bar i{display:block;height:100%;width:0;background:var(--done);border-radius:3px;transition:width .25s ease}
 .overall .bar{height:10px;border-radius:5px}
 
-.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.day-card{display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;color:var(--ink);text-decoration:none;min-width:0}
-.day-card:hover{border-color:var(--accent)}
-.day-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.day-card .dn{font:500 12px var(--mono);color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
-.day-card .dt{font:600 15px/1.25 var(--cond)}
-.day-card .dc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.day-card.complete .dc{color:var(--done)}
-@media (max-width:760px){.days{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+.concepts{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip .cc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.chip.complete .cc{color:var(--done)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip[aria-pressed="true"] .cc{color:var(--surface);opacity:.85}
 
 .tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 .toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
@@ -78,11 +77,11 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .tips div h3{margin:0 0 2px;font:600 15px var(--sans)}
 .tips div p{margin:0;font-size:14px;color:var(--muted)}
 
-section.day{display:flex;flex-direction:column;gap:22px;scroll-margin-top:16px}
-.day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
-.day-head .dn{font:500 13px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
-.day-head h2{margin:0;font:700 26px/1.15 var(--cond);flex:1 1 240px}
-.day-head .dc{font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+#main{display:flex;flex-direction:column;gap:36px}
+section.concept{display:flex;flex-direction:column;gap:6px;scroll-margin-top:16px}
+.c-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.c-head h2{margin:0;font:700 24px/1.15 var(--cond);flex:1 1 240px}
+.c-head .dc{font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .pattern h3{margin:0;font:600 19px/1.2 var(--cond);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
 .pattern h3 .pc{font:12px var(--mono);color:var(--muted);font-weight:400}
 .pattern .idea{margin:4px 0 8px;font-size:14px;color:var(--muted);max-width:75ch}
@@ -121,13 +120,13 @@ footer a{color:var(--accent)}
   <header>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span><span aria-hidden="true">·</span><a href="../system-design/">System Design</a></nav>
     <span class="eyebrow">Coding · Online assessment prep</span>
-    <h1>5-Day Coding Sprint</h1>
-    <p class="lede">Sixteen patterns that come up in Microsoft coding interviews, now covering all 212 problems on LeetCode's Microsoft list from the last three months, plus the original sprint picks. On a tight five days, switch to the original 50 or the core ★ 30. Problems tagged MS 3-mo are the new additions, listed easy to hard within each pattern.</p>
+    <h1>Coding Sprint</h1>
+    <p class="lede">Sixteen patterns that come up in Microsoft coding interviews, now covering all 212 problems on LeetCode's Microsoft list from the last three months, plus the original sprint picks. Pick a concept to focus on it, or switch to the original 50 or the core ★ 30 when you're short on time. Problems tagged MS 3-mo are the new additions, listed easy to hard within each pattern.</p>
     <div class="overall" aria-live="polite">
       <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
       <div class="bar"><i id="ovBar"></i></div>
     </div>
-    <nav class="days" id="dayCards" aria-label="Days"></nav>
+    <nav class="concepts" id="concepts" aria-label="Concepts"></nav>
     <div class="tools">
       <label class="toggle" for="view">Show <select id="view" class="sel"><option value="all">Everything (226)</option><option value="sprint">Original sprint (50)</option><option value="core">Core ★ (30)</option><option value="ms">Microsoft, last 3 months (212)</option></select></label>
       <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide solved</label>
@@ -142,7 +141,7 @@ footer a{color:var(--accent)}
     <div><h3>Time-box it</h3><p>Give an Easy 15 minutes and a Medium 25–30. If you're stuck, open the hint. If you're still stuck, read a solution, then close it and write it yourself.</p></div>
     <div><h3>Say the pattern first</h3><p>Before coding, name the pattern and the complexity you're aiming for. That habit is what transfers to new problems in the assessment.</p></div>
     <div><h3>Test edge cases yourself</h3><p>Empty input, one element, duplicates, negatives, and the largest size the problem allows. Assessments often grade on hidden tests like these.</p></div>
-    <div><h3>Redo what you missed</h3><p>Any problem you needed the solution for, solve again from scratch the next morning before starting that day's set.</p></div>
+    <div><h3>Redo what you missed</h3><p>Any problem you needed the solution for, solve again from scratch the next morning before starting the next set.</p></div>
   </section>
 
   <main id="main"></main>
@@ -154,8 +153,7 @@ footer a{color:var(--accent)}
 </div>
 
 <script>
-const PLAN=[
- {day:1,title:"Arrays, pointers and math",patterns:[
+const PATTERNS=[
   {name:"Arrays & Hashing",idea:"Trade memory for speed: a hash map or set turns repeated O(n) lookups into O(1). Prefix sums answer range questions in O(1).",probs:[
    ["two-sum",1,"Two Sum","E",1,"One pass with a map of value → index. For each number, check whether target − number is already in the map."],
    ["group-anagrams",49,"Group Anagrams","M",1,"Use a canonical key per word: the sorted letters, or a 26-count tuple. Group words by key in a map."],
@@ -226,8 +224,7 @@ const PLAN=[
    ["maximum-xor-of-two-numbers-in-an-array",421,"Maximum XOR of Two Numbers in an Array","M",0,"Build a binary trie of the numbers (high bit first). For each number, walk the trie preferring the opposite bit to maximize XOR.",1],
    ["count-commas-in-range-ii",3871,"Count Commas in Range II","M",0,"Every number ≥ 1,000 has at least one comma, every number ≥ 1,000,000 a second one, and so on. Add max(0, n − 10^(3j) + 1) for j = 1, 2…",1],
    ["consecutive-numbers-sum",829,"Consecutive Numbers Sum","H",0,"n is a sum of k consecutive numbers if (n − k(k − 1)/2) is positive and divisible by k. Try every k up to about √(2n).",1],
-   ["number-of-digit-one",233,"Number of Digit One","H",0,"For each digit position, count how often it's 1: use high, current and low parts of n at that power of ten.",1]]}]},
- {day:2,title:"Strings, windows and stacks",patterns:[
+   ["number-of-digit-one",233,"Number of Digit One","H",0,"For each digit position, count how often it's 1: use high, current and low parts of n at that power of ten.",1]]},
   {name:"Sliding Window",idea:"Grow the right edge, shrink the left edge while the window is invalid, and track the best window seen. Each index enters and leaves once, so O(n).",probs:[
    ["best-time-to-buy-and-sell-stock",121,"Best Time to Buy and Sell Stock","E",1,"Track the minimum price so far. At each day, the best profit is price − minimum."],
    ["longest-substring-without-repeating-characters",3,"Longest Substring Without Repeating Characters","M",1,"Map of character → last index. When you see a repeat inside the window, jump left to lastIndex + 1."],
@@ -269,8 +266,7 @@ const PLAN=[
    ["count-binary-substrings",696,"Count Binary Substrings","E",0,"Group lengths of consecutive equal characters. Add min(prev, cur) for each neighbouring pair of groups.",1],
    ["zigzag-conversion",6,"Zigzag Conversion","M",0,"Simulate rows: append each character to the current row and flip direction at the top and bottom rows.",1],
    ["sort-characters-by-frequency",451,"Sort Characters By Frequency","M",0,"Count characters, then bucket them by frequency (or sort by count) and build the output from highest to lowest.",1],
-   ["longest-substring-of-one-repeating-character",2213,"Longest Substring of One Repeating Character","H",0,"Segment tree where each node stores its longest run, prefix run and suffix run, plus its boundary characters. Update a point, then read the root.",1]]}]},
- {day:3,title:"Binary search, DP and greedy",patterns:[
+   ["longest-substring-of-one-repeating-character",2213,"Longest Substring of One Repeating Character","H",0,"Segment tree where each node stores its longest run, prefix run and suffix run, plus its boundary characters. Update a point, then read the root.",1]]},
   {name:"Binary Search",idea:"Halve the search space each step. Works on sorted arrays and also on answer spaces: 'find the smallest x where a condition becomes true'.",probs:[
    ["binary-search",704,"Binary Search","E",1,"Standard lo ≤ hi loop with mid = lo + (hi − lo) / 2. Get the boundary updates exactly right here, as later problems reuse them."],
    ["search-a-2d-matrix",74,"Search a 2D Matrix","M",0,"Treat the matrix as one sorted array of length m·n. Index i maps to row i / n and column i % n."],
@@ -319,8 +315,7 @@ const PLAN=[
    ["increasing-triplet-subsequence",334,"Increasing Triplet Subsequence","M",0,"Keep first and second as the smallest and second-smallest seen. Any number bigger than both finishes a triplet.",1],
    ["largest-number",179,"Largest Number","M",0,"Sort numbers as strings with the comparator a + b > b + a. Return '0' if the biggest is '0'.",1],
    ["destroying-asteroids",2126,"Destroying Asteroids","M",0,"Sort ascending and absorb asteroids smallest first. If one is ever bigger than your mass, you lose.",1],
-   ["valid-parenthesis-string",678,"Valid Parenthesis String","M",0,"Track the range [lo, hi] of possible open counts. '(' raises both, ')' lowers both, '*' widens. Clamp lo at 0 and fail if hi < 0.",1]]}]},
- {day:4,title:"Trees, graphs and backtracking",patterns:[
+   ["valid-parenthesis-string",678,"Valid Parenthesis String","M",0,"Track the range [lo, hi] of possible open counts. '(' raises both, ')' lowers both, '*' widens. Clamp lo at 0 and fail if hi < 0.",1]]},
   {name:"Trees (DFS & BFS)",idea:"Most tree problems are a recursive DFS that returns something to its parent. Use BFS with a queue when the problem is about levels.",probs:[
    ["maximum-depth-of-binary-tree",104,"Maximum Depth of Binary Tree","E",1,"Depth = 1 + max(depth(left), depth(right)). An empty node has depth 0."],
    ["binary-tree-level-order-traversal",102,"Binary Tree Level Order Traversal","M",1,"BFS with a queue. Process one level at a time by looping over the queue's size at the start of each level."],
@@ -358,8 +353,7 @@ const PLAN=[
    ["beautiful-arrangement",526,"Beautiful Arrangement","M",0,"Place numbers into positions 1..n. Only place value v at position p if v % p == 0 or p % v == 0, with a used bitmask.",1],
    ["word-search",79,"Word Search","M",0,"DFS from each cell matching the first letter. Mark the cell visited while exploring, and unmark when backtracking.",1],
    ["restore-ip-addresses",93,"Restore IP Addresses","M",0,"Split into exactly four parts of length 1–3. Each part must be ≤ 255 with no leading zero (except '0').",1],
-   ["n-queens",51,"N-Queens","H",0,"Place one queen per row. Track used columns and both diagonals (r − c and r + c) in sets.",1]]}]},
- {day:5,title:"Lists, heaps, design and SQL",patterns:[
+   ["n-queens",51,"N-Queens","H",0,"Place one queen per row. Track used columns and both diagonals (r − c and r + c) in sets.",1]]},
   {name:"Linked List",idea:"Draw the pointers before coding. A dummy head removes edge cases, and fast and slow pointers find middles and cycles.",probs:[
    ["reverse-linked-list",206,"Reverse Linked List","E",1,"Iterate with prev, curr and next. Point curr.next at prev, then advance. Also try it recursively."],
    ["merge-two-sorted-lists",21,"Merge Two Sorted Lists","E",1,"Dummy head plus a tail pointer. Attach the smaller node each step, then attach whatever remains."],
@@ -401,37 +395,39 @@ const PLAN=[
    ["create-hello-world-function",2667,"Create Hello World Function","E",0,"Return a function that returns 'Hello World': () => 'Hello World'.",1],
    ["game-play-analysis-iv",550,"Game Play Analysis IV","M",0,"Find each player's first login date, then count players who also logged in the next day. Divide by total players.",1],
    ["consecutive-numbers",180,"Consecutive Numbers","M",0,"Self-join three times on id, id + 1, id + 2 with equal num, or use LAG/LEAD. Return DISTINCT nums.",1],
-   ["department-top-three-salaries",185,"Department Top Three Salaries","H",0,"DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) and keep rank ≤ 3.",1]]}]}
+   ["department-top-three-salaries",185,"Department Top Three Salaries","H",0,"DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) and keep rank ≤ 3.",1]]}
 ];
 const MS=new Set(["two-sum", "add-two-numbers", "longest-substring-without-repeating-characters", "longest-palindromic-substring", "palindrome-number", "container-with-most-water", "roman-to-integer", "3sum", "valid-parentheses", "merge-two-sorted-lists", "remove-duplicates-from-sorted-array", "next-permutation", "trapping-rain-water", "maximum-subarray", "merge-intervals", "best-time-to-buy-and-sell-stock", "lru-cache", "reverse-linked-list", "product-of-array-except-self", "subarray-sum-equals-k", "generate-parentheses", "n-queens", "sliding-window-maximum", "longest-repeating-character-replacement", "longest-common-prefix", "minimum-edge-reversals-so-every-node-is-reachable", "climbing-stairs", "copy-list-with-random-pointer", "fibonacci-number", "reorder-list", "find-the-index-of-the-first-occurrence-in-a-string", "contains-duplicate", "minimum-window-substring", "largest-rectangle-in-histogram", "min-stack", "longest-increasing-subsequence", "jump-game-ii", "rotting-oranges", "task-scheduler", "longest-consecutive-sequence", "combine-two-tables", "maximum-average-subarray-i", "next-greater-element-ii", "all-nodes-distance-k-in-binary-tree", "subsets", "binary-tree-maximum-path-sum", "balanced-binary-tree", "sort-characters-by-frequency", "reverse-string", "binary-search", "reverse-linked-list-ii", "search-a-2d-matrix", "longest-palindromic-subsequence", "merge-strings-alternately", "median-of-two-sorted-arrays", "single-number", "single-number-ii", "valid-anagram", "concatenation-of-array", "surrounded-regions", "capacity-to-ship-packages-within-d-days", "majority-element", "linked-list-cycle", "pascals-triangle", "diameter-of-binary-tree", "set-mismatch", "reverse-nodes-in-k-group", "move-zeroes", "beautiful-arrangement", "jump-game", "number-of-digit-one", "validate-binary-search-tree", "find-peak-element", "reverse-vowels-of-a-string", "burst-balloons", "house-robber", "can-place-flowers", "unique-email-addresses", "flood-fill", "number-of-unique-xor-triplets-i", "letter-combinations-of-a-phone-number", "valid-palindrome", "permutations", "frequency-of-the-most-frequent-element", "corporate-flight-bookings", "customers-who-never-order", "running-sum-of-1d-array", "the-skyline-problem", "top-k-frequent-elements", "coin-change", "same-tree", "spiral-matrix", "minimum-size-subarray-sum", "contains-duplicate-ii", "non-overlapping-intervals", "stone-game", "rotate-array", "wildcard-matching", "find-first-and-last-position-of-element-in-sorted-array", "invert-binary-tree", "smallest-divisible-digit-product-i", "add-binary", "intersection-of-two-linked-lists", "stone-game-ii", "find-customer-referee", "asteroid-collision", "consecutive-numbers-sum", "increasing-triplet-subsequence", "combination-sum-iii", "minimum-difficulty-of-a-job-schedule", "longest-substring-of-one-repeating-character", "remove-k-digits", "find-the-largest-almost-missing-integer", "decode-ways", "smallest-missing-integer-greater-than-sequential-prefix-sum", "substrings-of-size-three-with-distinct-characters", "maximum-sum-circular-subarray", "backspace-string-compare", "3sum-closest", "target-sum", "kth-largest-element-in-an-array", "baseball-game", "find-in-mountain-array", "range-sum-query-immutable", "smallest-missing-multiple-of-k", "create-hello-world-function", "merge-sorted-array", "maximum-value-at-a-given-index-in-a-bounded-array", "maximum-depth-of-binary-tree", "remove-element", "maximum-number-of-occurrences-of-a-substring", "4sum", "search-a-2d-matrix-ii", "maximum-performance-of-a-team", "plus-one", "triangle-judgement", "remove-duplicate-letters", "replace-employee-id-with-the-unique-identifier", "minimum-operations-to-reduce-an-integer-to-0", "binary-tree-preorder-traversal", "accounts-merge", "alien-dictionary", "max-consecutive-ones", "length-of-last-word", "sort-an-array", "beautiful-towers-ii", "destroying-asteroids", "next-greater-element-i", "group-anagrams", "time-needed-to-inform-all-employees", "smallest-stable-index-ii", "game-play-analysis-iv", "distinct-subsequences", "distinct-subsequences-ii", "online-stock-span", "middle-of-the-linked-list", "count-commas-in-range-ii", "department-top-three-salaries", "patients-with-a-condition", "array-partition", "fruit-into-baskets", "richest-customer-wealth", "rectangle-overlap", "subtree-of-another-tree", "koko-eating-bananas", "path-sum-iii", "image-overlap", "count-non-decreasing-arrays-with-given-digit-sums", "house-robber-iv", "maximum-xor-of-two-numbers-in-an-array", "number-of-recent-calls", "sort-colors", "create-a-dataframe-from-list", "count-binary-substrings", "insert-delete-getrandom-o1", "design-parking-system", "reverse-integer", "delete-and-earn", "power-of-two", "course-schedule", "kids-with-the-greatest-number-of-candies", "time-based-key-value-store", "basic-calculator-ii", "implement-trie-prefix-tree", "design-hit-counter", "two-sum-ii-input-array-is-sorted", "average-time-of-process-per-machine", "maximum-bitwise-xor-after-rearrangement", "find-all-anagrams-in-a-string", "minimum-path-sum", "maximum-points-you-can-obtain-from-cards", "consecutive-numbers", "zigzag-conversion", "ugly-number", "shuffle-the-array", "word-search", "course-schedule-ii", "largest-number", "duplicate-emails", "ransom-note", "lowest-common-ancestor-of-a-binary-tree", "maximum-nesting-depth-of-two-valid-parentheses-strings", "using-a-robot-to-print-the-lexicographically-smallest-string", "restore-ip-addresses", "split-array-largest-sum", "search-insert-position", "max-consecutive-ones-iii", "longest-valid-parentheses", "contiguous-array", "find-all-numbers-disappeared-in-an-array", "squares-of-a-sorted-array", "valid-parenthesis-string"]);
 const STORE="coding-sprint";
-const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,slug:r[0],core:!!r[4],x:!!r[6],ms:MS.has(r[0])}))));
+const pid=n=>n.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+PATTERNS.forEach(p=>p.id=pid(p.name));
+const ALL=[];PATTERNS.forEach(p=>p.probs.forEach(r=>ALL.push({pat:p.id,slug:r[0],core:!!r[4],x:!!r[6],ms:MS.has(r[0])})));
 const VIEWS={all:a=>true,sprint:a=>!a.x,core:a=>a.core,ms:a=>a.ms};
-let st={done:new Set(),view:"all",hide:false};
-try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.view=VIEWS[o.view]?o.view:(o.core?"core":"all");st.hide=!!o.hide}catch(e){}
-function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],view:st.view,hide:st.hide}))}catch(e){}}
+let st={done:new Set(),view:"all",hide:false,concept:"all"};
+try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.view=VIEWS[o.view]?o.view:(o.core?"core":"all");st.hide=!!o.hide;st.concept=PATTERNS.some(p=>p.id===o.concept)?o.concept:"all"}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],view:st.view,hide:st.hide,concept:st.concept}))}catch(e){}}
 const BY=new Map(ALL.map(a=>[a.slug,a]));const inView=s=>VIEWS[st.view](BY.get(s));
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(a,b)=>b?Math.round(a/b*100):0;
 function cnt(filter){const l=ALL.filter(a=>VIEWS[st.view](a)&&filter(a));return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
+const chip=(id,label,c)=>`<button type="button" class="chip ${c.t&&c.d===c.t?"complete":""}" data-c="${id}" aria-pressed="${st.concept===id}">${esc(label)} <span class="cc">${c.t&&c.d===c.t?"✓ ":""}${c.d}/${c.t}</span></button>`;
 
 function renderStats(){
   const all=cnt(()=>true),core=cnt(a=>a.core);
   $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved`+(core.t&&st.view!=="core"?` · core ★ ${core.d}/${core.t}`:"");
   $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
-  $("dayCards").innerHTML=PLAN.map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.t&&c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.filter(p=>p.probs.some(r=>inView(r[0]))).map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.t&&c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("");
-  PLAN.forEach(d=>{const c=cnt(a=>a.day===d.day),el=$("dc"+d.day);if(el)el.textContent=`${c.d} / ${c.t} solved`});
-  PLAN.forEach(d=>d.patterns.forEach((p,i)=>{const el=$(`pc${d.day}-${i}`);if(el){const v=p.probs.filter(r=>inView(r[0]));el.textContent=`${v.filter(r=>st.done.has(r[0])).length}/${v.length}`}}));
+  $("concepts").innerHTML=chip("all","All concepts",all)+PATTERNS.map(p=>{const c=cnt(a=>a.pat===p.id);return c.t?chip(p.id,p.name,c):""}).join("");
+  PATTERNS.forEach(p=>{const el=$("dc-"+p.id);if(el){const c=cnt(a=>a.pat===p.id);el.textContent=`${c.d} / ${c.t} solved`}});
 }
 function render(){
   $("view").value=st.view;$("hideDone").checked=st.hide;
-  $("main").innerHTML=PLAN.map(d=>`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
-    d.patterns.map((p,i)=>{
-      if(!p.probs.some(r=>inView(r[0])))return "";
-      const rows=p.probs.filter(r=>inView(r[0])&&(!st.hide||!st.done.has(r[0])));
-      return `<div class="pattern"><h3>${esc(p.name)} <span class="pc" id="pc${d.day}-${i}"></span></h3><p class="idea">${esc(p.idea)}</p>`+
-      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,x])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${x?'<span class="tag" title="Added from LeetCode\'s Microsoft list, last 3 months">MS 3-mo</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
+  $("main").innerHTML=PATTERNS.map(p=>{
+    if(st.concept!=="all"&&st.concept!==p.id)return "";
+    if(!p.probs.some(r=>inView(r[0])))return "";
+    const rows=p.probs.filter(r=>inView(r[0])&&(!st.hide||!st.done.has(r[0])));
+    return `<section class="concept pattern" id="c-${p.id}"><div class="c-head"><h2>${esc(p.name)}</h2><span class="dc" id="dc-${p.id}"></span></div><p class="idea">${esc(p.idea)}</p>`+
+    (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,x])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${x?'<span class="tag" title="Added from LeetCode\'s Microsoft list, last 3 months">MS 3-mo</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</section>`}).join("")||`<p class="empty">Nothing in this view for this concept.</p>`;
   renderStats();
 }
 document.addEventListener("change",e=>{
@@ -439,7 +435,8 @@ document.addEventListener("change",e=>{
     if(st.hide&&e.target.checked){render();return}
     e.target.closest("li").classList.toggle("done",e.target.checked);renderStats();}
 });
-$("view").addEventListener("change",e=>{st.view=e.target.value;save();render()});
+$("concepts").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;st.concept=b.dataset.c;save();render();$("main").scrollIntoView({block:"start"})});
+$("view").addEventListener("change",e=>{st.view=e.target.value;if(st.concept!=="all"&&!ALL.some(a=>a.pat===st.concept&&VIEWS[st.view](a)))st.concept="all";save();render()});
 $("hideDone").addEventListener("change",e=>{st.hide=e.target.checked;save();render()});
 $("resetBtn").addEventListener("click",()=>{$("resetConfirm").hidden=false});
 $("resetNo").addEventListener("click",()=>{$("resetConfirm").hidden=true});
