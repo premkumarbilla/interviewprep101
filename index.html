@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Interview Prep 101">
 <meta property="og:title" content="Interview Prep 101">
-<meta property="og:description" content="Free trackers for software engineering interview prep. System design and a 5-day coding sprint.">
+<meta property="og:description" content="Free trackers for software engineering interview prep. System design and a Microsoft-focused coding sprint.">
 <meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/">
 <meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Interview Prep 101: System Design and Coding trackers">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Interview Prep 101">
-<meta name="twitter:description" content="Free trackers for software engineering interview prep. System design and a 5-day coding sprint.">
+<meta name="twitter:description" content="Free trackers for software engineering interview prep. System design and a Microsoft-focused coding sprint.">
 <meta name="twitter:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Interview Prep 101","url":"https://premkumarbilla.github.io/interviewprep101/","description":"Free, no-sign-up trackers for software engineering interview prep."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,9 +96,9 @@ footer a{color:var(--accent)}
       <span class="go">Open System Design →</span>
     </a>
     <a class="track" href="coding/">
-      <div class="top"><span class="status live">Live</span><span class="facts"><span><b>50</b> problems</span></span></div>
+      <div class="top"><span class="status live">Live</span><span class="facts"><span><b>226</b> problems</span></span></div>
       <h2>Coding</h2>
-      <p>A 5-day sprint through 10 algorithm patterns common in Microsoft interviews, with 5 LeetCode problems each and a hint for every problem.</p>
+      <p>A 5-day sprint through 16 algorithm patterns, covering every problem on LeetCode's Microsoft list from the last 3 months. Every problem has a hint.</p>
       <div class="prog">
         <div class="row"><span id="cdLabel">Not started</span><span id="cdPct">0%</span></div>
         <div class="bar"><i id="cdBar"></i></div>
@@ -126,7 +126,7 @@ function showProgress(){
   document.getElementById("sdLabel").textContent=done?done+" of "+TOTAL+" read":"Not started";
   document.getElementById("sdPct").textContent=pct+"%";
   document.getElementById("sdBar").style.width=pct+"%";
-  var CT=50,cd=0;
+  var CT=226,cd=0;
   try{var c=JSON.parse(localStorage.getItem("coding-sprint")||"{}");cd=(c.done||[]).length}catch(e){}
   cd=Math.min(cd,CT);var cp=Math.round(cd/CT*100);
   document.getElementById("cdLabel").textContent=cd?cd+" of "+CT+" solved":"Not started";
