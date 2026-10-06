@@ -8,7 +8,7 @@ Live site: https://premkumarbilla.github.io/interviewprep101/
 |---|---|
 | `index.html` | Home page, with links to each track and your System Design progress |
 | `system-design/index.html` | System Design Interview Reading Tracker (Alex Xu, Vol. 1 and 2, 457 references) |
-| `coding/index.html` | Coding Sprint: Round 1 covers 10 core patterns (50 problems), and Round 2 adds 60 recent Microsoft problems |
+| `coding/index.html` | 5-Day Coding Sprint: 226 LeetCode problems across 16 patterns, including LeetCode's Microsoft list from the last 3 months |
 | `og-image.png`, `system-design/og-image.png` | Preview images shown when a link is shared |
 | `sitemap.xml` | Lists the pages for search engines. Submit it in Google Search Console. |
 
@@ -26,9 +26,9 @@ If the site address changes, update the URLs in each page's `<head>` tags and in
 
 ## Updating the Coding Sprint
 
-The problems are the `PLAN` array in the `<script>` block in `coding/index.html`. Each problem is `[slug, number, title, difficulty, core, hint, recent]`, where `recent` marks Round 2 problems that were also on the 30-day list. Progress is stored by slug, so you can add or reorder problems without losing anyone's ticks. When the number of problems changes, update `CT` in `index.html`.
+The problems are the `PLAN` array in the `<script>` block in `coding/index.html`. Each problem is `[slug, number, title, difficulty, core, hint, added]`, where `added` marks problems added from the Microsoft list (shown as MS 3-mo). The `MS` set lists every problem on that list, and powers the "Microsoft, last 3 months" view. Progress is stored by slug, so you can add or reorder problems without losing anyone's ticks. When the number of problems changes, update `CT` in `index.html`.
 
-Round 2 comes from the Microsoft lists in [snehasishroy/leetcode-companywise-interview-questions](https://github.com/snehasishroy/leetcode-companywise-interview-questions/tree/master/microsoft) (snapshot of 12 July 2026).
+The Microsoft problems come from LeetCode's Microsoft company list for the last 3 months, captured October 2026.
 
 ## How progress is stored
 

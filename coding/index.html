@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coding Sprint · Interview Prep 101</title>
-<meta name="description" content="A coding interview sprint for Microsoft: 110 LeetCode problems across 12 algorithm patterns, including 60 from Microsoft's recent company-tagged list, with hints and a progress checklist.">
+<title>5-Day Coding Sprint · Interview Prep 101</title>
+<meta name="description" content="A 5-day coding interview sprint: 16 algorithm patterns and 226 LeetCode problems, including every problem on the Microsoft list from the last 3 months, with hints and a progress checklist.">
 <link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Interview Prep 101">
-<meta property="og:title" content="Coding Sprint">
-<meta property="og:description" content="110 LeetCode problems across 12 patterns, including 60 recently asked at Microsoft, with hints and a progress checklist.">
+<meta property="og:title" content="5-Day Coding Sprint">
+<meta property="og:description" content="16 algorithm patterns and 226 LeetCode problems, including the Microsoft last-3-months list, with hints and a progress checklist.">
 <meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -53,10 +53,7 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .bar i{display:block;height:100%;width:0;background:var(--done);border-radius:3px;transition:width .25s ease}
 .overall .bar{height:10px;border-radius:5px}
 
-.rounds{display:flex;flex-direction:column;gap:14px}
-.round-group{display:flex;flex-direction:column;gap:8px}
-.round-group .rl{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .day-card{display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;color:var(--ink);text-decoration:none;min-width:0}
 .day-card:hover{border-color:var(--accent)}
 .day-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -65,10 +62,6 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .day-card .dc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .day-card.complete .dc{color:var(--done)}
 @media (max-width:760px){.days{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
-.round-head{margin-top:16px;display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--accent-soft);border-radius:10px;scroll-margin-top:16px}
-.round-head .rn{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.round-head h2{margin:0;font:700 30px/1.1 var(--cond)}
-.round-head p{margin:0;font-size:14px;color:var(--muted);max-width:75ch}
 
 .tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 .toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
@@ -85,7 +78,6 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .tips div h3{margin:0 0 2px;font:600 15px var(--sans)}
 .tips div p{margin:0;font-size:14px;color:var(--muted)}
 
-#main{display:flex;flex-direction:column;gap:40px}
 section.day{display:flex;flex-direction:column;gap:22px;scroll-margin-top:16px}
 .day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
 .day-head .dn{font:500 13px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
@@ -106,13 +98,15 @@ ol.probs li.done{background:linear-gradient(90deg,var(--done-soft),transparent 7
 li.done .pt a{color:var(--muted)}
 .num{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .star{color:var(--star);font-size:13px}
-.recent{font:500 11px var(--mono);color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:1px 6px;letter-spacing:.02em}
 .diff{font:500 11px var(--mono);border-radius:3px;padding:2px 7px;white-space:nowrap;letter-spacing:.02em}
 .diff.E{color:var(--easy);background:var(--easy-bg)}.diff.M{color:var(--med);background:var(--med-bg)}.diff.H{color:var(--hard);background:var(--hard-bg)}
 details.hint{grid-column:2/-1;font-size:13.5px;color:var(--muted)}
 details.hint summary{cursor:pointer;color:var(--accent);font-size:13px;width:max-content}
 details.hint summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 details.hint p{margin:4px 0 0;max-width:75ch}
+.tag{font:500 10.5px var(--mono);color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:1px 6px;letter-spacing:.02em;white-space:nowrap}
+.sel{font:14px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 8px}
+.sel:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .empty{color:var(--muted);font-size:14px;padding:4px 0}
 footer{border-top:1px solid var(--rule);padding-top:16px;font-size:13px;color:var(--muted)}
 footer p{margin:0 0 6px;max-width:80ch}
@@ -126,18 +120,18 @@ footer a{color:var(--accent)}
 <div class="wrap">
   <header>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span><span aria-hidden="true">·</span><a href="../system-design/">System Design</a></nav>
-    <span class="eyebrow">Coding · Microsoft interview prep</span>
-    <h1>Coding Sprint</h1>
-    <p class="lede">Round 1 covers ten algorithm patterns that come up often in Microsoft coding interviews, five LeetCode problems each. Round 2 adds 60 problems Microsoft has asked recently: five more for each pattern, plus intervals, greedy and backtracking. Do two patterns a day. If you're short on time, do the ★ problems first.</p>
+    <span class="eyebrow">Coding · Online assessment prep</span>
+    <h1>5-Day Coding Sprint</h1>
+    <p class="lede">Sixteen patterns that come up in Microsoft coding interviews, now covering all 212 problems on LeetCode's Microsoft list from the last three months, plus the original sprint picks. On a tight five days, switch to the original 50 or the core ★ 30. Problems tagged MS 3-mo are the new additions, listed easy to hard within each pattern.</p>
     <div class="overall" aria-live="polite">
       <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
       <div class="bar"><i id="ovBar"></i></div>
     </div>
-    <nav class="rounds" id="dayCards" aria-label="Days"></nav>
+    <nav class="days" id="dayCards" aria-label="Days"></nav>
     <div class="tools">
-      <label class="toggle" for="coreOnly"><input id="coreOnly" type="checkbox"> Core ★ only</label>
+      <label class="toggle" for="view">Show <select id="view" class="sel"><option value="all">Everything (226)</option><option value="sprint">Original sprint (50)</option><option value="core">Core ★ (30)</option><option value="ms">Microsoft, last 3 months (212)</option></select></label>
       <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide solved</label>
-      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span><span><span class="recent">30d</span> also asked in the latest 30 days</span></span>
+      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span><span><span class="tag">MS 3-mo</span> added</span></span>
       <button class="btn danger" id="resetBtn" type="button">Reset</button>
       <span class="confirm" id="resetConfirm" hidden>Untick all solved problems? <button class="btn danger" id="resetYes" type="button">Yes, reset</button><button class="btn" id="resetNo" type="button">Cancel</button></span>
     </div>
@@ -154,187 +148,290 @@ footer a{color:var(--accent)}
   <main id="main"></main>
 
   <footer>
-    <p>Round 1 reflects patterns widely reported in Microsoft interviews. Round 2 comes from LeetCode's Microsoft company tag as captured in the community list <a href="https://github.com/snehasishroy/leetcode-companywise-interview-questions/tree/master/microsoft" target="_blank" rel="noopener">snehasishroy/leetcode-companywise-interview-questions</a>, snapshot of 12 July 2026, covering about mid-April to mid-July. SQL problems are left out. None of this is an official Microsoft list. Links go to LeetCode, and all problems here are free.</p>
+    <p>The original 50 reflect patterns widely reported in Microsoft interviews. The MS 3-mo additions come from LeetCode's Microsoft company list for the last three months, captured October 2026. Neither is an official Microsoft list. Two added problems, Alien Dictionary and Design Hit Counter, need LeetCode Premium; the rest are free.</p>
     <p>Your progress is saved in this browser only. Part of <a href="../">Interview Prep 101</a>.</p>
   </footer>
 </div>
 
 <script>
 const PLAN=[
- {day:1,title:"Warm-up: arrays and pointers",patterns:[
+ {day:1,title:"Arrays, pointers and math",patterns:[
   {name:"Arrays & Hashing",idea:"Trade memory for speed: a hash map or set turns repeated O(n) lookups into O(1). Prefix sums answer range questions in O(1).",probs:[
    ["two-sum",1,"Two Sum","E",1,"One pass with a map of value → index. For each number, check whether target − number is already in the map."],
    ["group-anagrams",49,"Group Anagrams","M",1,"Use a canonical key per word: the sorted letters, or a 26-count tuple. Group words by key in a map."],
    ["product-of-array-except-self",238,"Product of Array Except Self","M",1,"Build prefix products left to right, then multiply by suffix products right to left. No division, O(1) extra space besides the output."],
    ["longest-consecutive-sequence",128,"Longest Consecutive Sequence","M",0,"Put everything in a set. Only start counting from numbers where n − 1 isn't in the set, so each run is walked once. O(n)."],
-   ["subarray-sum-equals-k",560,"Subarray Sum Equals K","M",0,"Running prefix sum plus a map of prefix-sum counts. At each step, add count[prefix − k]. Start with count[0] = 1."]]},
+   ["subarray-sum-equals-k",560,"Subarray Sum Equals K","M",0,"Running prefix sum plus a map of prefix-sum counts. At each step, add count[prefix − k]. Start with count[0] = 1."],
+   ["contains-duplicate",217,"Contains Duplicate","E",0,"Add each number to a set; if it's already there, return true.",1],
+   ["valid-anagram",242,"Valid Anagram","E",0,"Count letters of s up, letters of t down in a 26-slot array. Every slot must end at 0.",1],
+   ["contains-duplicate-ii",219,"Contains Duplicate II","E",0,"Map of value → last index. On a repeat, check whether i − lastIndex ≤ k, then update the index.",1],
+   ["concatenation-of-array",1929,"Concatenation of Array","E",0,"Allocate 2n and write nums[i] to positions i and i + n.",1],
+   ["running-sum-of-1d-array",1480,"Running Sum of 1d Array","E",0,"Running total in place: nums[i] += nums[i − 1].",1],
+   ["shuffle-the-array",1470,"Shuffle the Array","E",0,"Element i of the first half goes to 2i, element i of the second half to 2i + 1.",1],
+   ["richest-customer-wealth",1672,"Richest Customer Wealth","E",0,"Sum each row and keep the maximum.",1],
+   ["kids-with-the-greatest-number-of-candies",1431,"Kids With the Greatest Number of Candies","E",0,"Find the max once, then check candies[i] + extra ≥ max for each kid.",1],
+   ["max-consecutive-ones",485,"Max Consecutive Ones","E",0,"Count the current streak of 1s, reset on 0, and track the best streak.",1],
+   ["majority-element",169,"Majority Element","E",0,"Boyer–Moore voting: keep a candidate and a count; on count 0 take the current number as candidate.",1],
+   ["set-mismatch",645,"Set Mismatch","E",0,"Use the array itself: mark nums[|x| − 1] negative. A value that hits an already-negative slot is the duplicate; the slot still positive is the missing number.",1],
+   ["find-all-numbers-disappeared-in-an-array",448,"Find All Numbers Disappeared in an Array","E",0,"Negate nums[|x| − 1] for every x. Indices left positive are the missing numbers. O(1) extra space.",1],
+   ["pascals-triangle",118,"Pascal's Triangle","E",0,"Each row starts and ends with 1; inner values are the sum of the two values above.",1],
+   ["range-sum-query-immutable",303,"Range Sum Query - Immutable","E",0,"Precompute prefix[i + 1] = prefix[i] + nums[i]. sumRange(l, r) = prefix[r + 1] − prefix[l].",1],
+   ["array-partition",561,"Array Partition","E",0,"Sort and add every element at an even index. Pairing neighbours wastes the least.",1],
+   ["can-place-flowers",605,"Can Place Flowers","E",0,"Scan left to right and plant greedily wherever the slot and both neighbours are empty (treat the ends as empty).",1],
+   ["unique-email-addresses",929,"Unique Email Addresses","E",0,"Normalize each email: in the local part drop everything after '+' and remove dots. Count distinct results with a set.",1],
+   ["ransom-note",383,"Ransom Note","E",0,"Count letters in magazine, then decrement for each letter in the note. Any count below 0 means false.",1],
+   ["find-the-largest-almost-missing-integer",3471,"Find the Largest Almost Missing Integer","E",0,"k == n: the max element. k == 1: the largest value that appears once. Otherwise only nums[0] and nums[n − 1] can be in exactly one window; take the larger one that appears only once in the array.",1],
+   ["smallest-missing-integer-greater-than-sequential-prefix-sum",2996,"Smallest Missing Integer Greater Than Sequential Prefix Sum","E",0,"Find the longest prefix where each element is previous + 1 and sum it. Then increment from that sum until you hit a value not in the array's set.",1],
+   ["smallest-missing-multiple-of-k",3718,"Smallest Missing Multiple of K","E",0,"Put nums in a set and try k, 2k, 3k… until one is missing. At most n + 1 tries.",1],
+   ["corporate-flight-bookings",1109,"Corporate Flight Bookings","M",0,"Difference array: add seats at first − 1 and subtract at last. A prefix sum gives the totals. O(n + bookings).",1],
+   ["contiguous-array",525,"Contiguous Array","M",0,"Treat 0 as −1. Equal 0s and 1s means the running sum repeats; keep the first index of each sum and maximize i − first[sum].",1],
+   ["rotate-array",189,"Rotate Array","M",0,"Reverse the whole array, then reverse the first k and the remaining n − k (use k %= n).",1],
+   ["next-permutation",31,"Next Permutation","M",0,"From the right, find the first i with nums[i] < nums[i + 1]. Swap it with the smallest larger value to its right, then reverse the suffix after i.",1],
+   ["spiral-matrix",54,"Spiral Matrix","M",0,"Keep top, bottom, left and right bounds. Walk right, down, left, up, shrinking a bound after each side and stopping when they cross.",1],
+   ["image-overlap",835,"Image Overlap","M",0,"For every pair of 1-cells (one from each image), count the offset (dr, dc) in a map. The most common offset is the answer.",1],
+   ["smallest-stable-index-ii",3904,"Smallest Stable Index II","M",0,"Build prefix max and suffix min arrays. Return the first i where prefixMax[i] − suffixMin[i] ≤ k.",1]]},
   {name:"Two Pointers",idea:"On sorted data or from both ends, move one pointer at a time based on a comparison. Usually turns O(n²) into O(n).",probs:[
    ["valid-palindrome",125,"Valid Palindrome","E",1,"Pointers at both ends. Skip non-alphanumeric characters and compare lowercase letters while moving inward."],
    ["3sum",15,"3Sum","M",1,"Sort. Fix i, then run two pointers on the rest looking for −nums[i]. Skip duplicates for i and after each match."],
    ["container-with-most-water",11,"Container With Most Water","M",1,"Start at both ends and always move the shorter side inward, since the shorter wall caps the area."],
    ["sort-colors",75,"Sort Colors","M",0,"Dutch national flag: low, mid and high pointers. Swap 0s to low, 2s to high, and only advance mid when you didn't swap from high."],
-   ["trapping-rain-water",42,"Trapping Rain Water","H",0,"Two pointers with leftMax and rightMax. Move the side with the smaller max, since water there is bounded by that max."]]}]},
+   ["trapping-rain-water",42,"Trapping Rain Water","H",0,"Two pointers with leftMax and rightMax. Move the side with the smaller max, since water there is bounded by that max."],
+   ["remove-duplicates-from-sorted-array",26,"Remove Duplicates from Sorted Array","E",0,"Write pointer w starts at 1. Copy nums[i] to w whenever it differs from nums[w − 1].",1],
+   ["remove-element",27,"Remove Element","E",0,"Write pointer: copy every element that isn't val forward. Return the write index.",1],
+   ["move-zeroes",283,"Move Zeroes","E",0,"Write pointer for non-zeros; swap each non-zero into position w so zeros drift to the end.",1],
+   ["merge-sorted-array",88,"Merge Sorted Array","E",0,"Fill from the back: compare the largest remaining in each array and write it at the end of nums1.",1],
+   ["reverse-string",344,"Reverse String","E",0,"Swap s[l] and s[r] while moving inward.",1],
+   ["reverse-vowels-of-a-string",345,"Reverse Vowels of a String","E",0,"Two pointers that each skip non-vowels, then swap and move inward.",1],
+   ["squares-of-a-sorted-array",977,"Squares of a Sorted Array","E",0,"Largest squares are at the ends. Compare |left| and |right| and fill the result from the back.",1],
+   ["merge-strings-alternately",1768,"Merge Strings Alternately","E",0,"Alternate taking a character from each word while both have characters, then append the leftover.",1],
+   ["backspace-string-compare",844,"Backspace String Compare","E",0,"Walk both strings from the end, skipping characters erased by '#'. Compare one real character at a time. O(1) space.",1],
+   ["two-sum-ii-input-array-is-sorted",167,"Two Sum II - Input Array Is Sorted","M",0,"Pointers at both ends. Sum too small → move left up; too big → move right down.",1],
+   ["3sum-closest",16,"3Sum Closest","M",0,"Sort, fix i, then two pointers on the rest. Track the sum with the smallest |sum − target|.",1],
+   ["4sum",18,"4Sum","M",0,"Same as 3Sum with one more fixed index: two nested loops plus two pointers. Skip duplicates at every level and watch for overflow.",1]]},
+  {name:"Math & Bit Manipulation",idea:"Work digit by digit with % 10 and / 10, and know the bit tricks: x & (x − 1) clears the lowest set bit, and a ^ a = 0.",probs:[
+   ["palindrome-number",9,"Palindrome Number","E",0,"Reverse only the second half of the digits and compare with the first half. Negatives are never palindromes.",1],
+   ["roman-to-integer",13,"Roman to Integer","E",0,"Add each symbol's value, but subtract it when a larger symbol follows (IV, IX, XL…).",1],
+   ["plus-one",66,"Plus One","E",0,"Walk from the last digit: if < 9, add one and return; otherwise set it to 0 and carry. All 9s → prepend 1.",1],
+   ["add-binary",67,"Add Binary","E",0,"Add from the right with a carry, appending sum % 2 and carrying sum / 2. Reverse at the end.",1],
+   ["power-of-two",231,"Power of Two","E",0,"n > 0 and n & (n − 1) == 0.",1],
+   ["ugly-number",263,"Ugly Number","E",0,"Divide out 2, 3 and 5 while possible. It's ugly if you end at 1 (and n > 0).",1],
+   ["single-number",136,"Single Number","E",0,"XOR every number. Pairs cancel and the single one remains.",1],
+   ["smallest-divisible-digit-product-i",3345,"Smallest Divisible Digit Product I","E",0,"Start at n and step up, computing each number's digit product, until it's divisible by t. You never need more than ~10 steps.",1],
+   ["rectangle-overlap",836,"Rectangle Overlap","E",0,"They overlap if the x-ranges and y-ranges both overlap with positive length: max(left) < min(right) on each axis.",1],
+   ["reverse-integer",7,"Reverse Integer","M",0,"Pop digits with % 10 and push onto the result, checking for 32-bit overflow before each push.",1],
+   ["single-number-ii",137,"Single Number II","M",0,"Count each bit position mod 3. The bits left over form the single number. Or use the ones/twos bitmask trick.",1],
+   ["number-of-unique-xor-triplets-i",3513,"Number of Unique XOR Triplets I","M",0,"Since nums is a permutation of 1..n, for n ≤ 2 the answer is n. Otherwise every value below the next power of two above n is reachable: return 1 << bit_length(n).",1],
+   ["maximum-bitwise-xor-after-rearrangement",3849,"Maximum Bitwise XOR After Rearrangement","M",0,"Count the 1s in t. Go left to right over s: if s[i] is 0, use a 1 from t if one is left; if s[i] is 1, use a 0 if one is left. That bit becomes 1.",1],
+   ["minimum-operations-to-reduce-an-integer-to-0",2571,"Minimum Operations to Reduce an Integer to 0","M",0,"Greedy on bits: for a run of 1s, adding the low bit is cheaper than subtracting each one. A clean form: answer = popcount(n ^ 3n).",1],
+   ["maximum-xor-of-two-numbers-in-an-array",421,"Maximum XOR of Two Numbers in an Array","M",0,"Build a binary trie of the numbers (high bit first). For each number, walk the trie preferring the opposite bit to maximize XOR.",1],
+   ["count-commas-in-range-ii",3871,"Count Commas in Range II","M",0,"Every number ≥ 1,000 has at least one comma, every number ≥ 1,000,000 a second one, and so on. Add max(0, n − 10^(3j) + 1) for j = 1, 2…",1],
+   ["consecutive-numbers-sum",829,"Consecutive Numbers Sum","H",0,"n is a sum of k consecutive numbers if (n − k(k − 1)/2) is positive and divisible by k. Try every k up to about √(2n).",1],
+   ["number-of-digit-one",233,"Number of Digit One","H",0,"For each digit position, count how often it's 1: use high, current and low parts of n at that power of ten.",1]]}]},
  {day:2,title:"Strings, windows and stacks",patterns:[
   {name:"Sliding Window",idea:"Grow the right edge, shrink the left edge while the window is invalid, and track the best window seen. Each index enters and leaves once, so O(n).",probs:[
    ["best-time-to-buy-and-sell-stock",121,"Best Time to Buy and Sell Stock","E",1,"Track the minimum price so far. At each day, the best profit is price − minimum."],
    ["longest-substring-without-repeating-characters",3,"Longest Substring Without Repeating Characters","M",1,"Map of character → last index. When you see a repeat inside the window, jump left to lastIndex + 1."],
    ["longest-repeating-character-replacement",424,"Longest Repeating Character Replacement","M",1,"Window is valid while windowLength − maxCount ≤ k. Keep counts of letters and shrink when invalid."],
    ["find-all-anagrams-in-a-string",438,"Find All Anagrams in a String","M",0,"Fixed-size window of length p. Compare 26-letter counts as you slide, adding one character and removing one."],
-   ["minimum-window-substring",76,"Minimum Window Substring","H",0,"Need-counts for t and a 'missing' counter. Expand right until nothing is missing, then shrink left to minimize, recording the best window."]]},
+   ["minimum-window-substring",76,"Minimum Window Substring","H",0,"Need-counts for t and a 'missing' counter. Expand right until nothing is missing, then shrink left to minimize, recording the best window."],
+   ["maximum-average-subarray-i",643,"Maximum Average Subarray I","E",0,"Fixed window of size k: add the new element, subtract the one leaving, track the max sum.",1],
+   ["substrings-of-size-three-with-distinct-characters",1876,"Substrings of Size Three with Distinct Characters","E",0,"Slide a window of 3 and count windows where all three characters differ.",1],
+   ["minimum-size-subarray-sum",209,"Minimum Size Subarray Sum","M",0,"Positive numbers, so grow right and shrink left while the sum is ≥ target, recording the shortest length.",1],
+   ["fruit-into-baskets",904,"Fruit Into Baskets","M",0,"Longest window with at most 2 distinct values. Keep counts in a map and shrink when it holds 3 keys.",1],
+   ["max-consecutive-ones-iii",1004,"Max Consecutive Ones III","M",0,"Longest window with at most k zeros. Shrink left when the zero count goes over k.",1],
+   ["maximum-points-you-can-obtain-from-cards",1423,"Maximum Points You Can Obtain from Cards","M",0,"Taking k from the ends leaves a middle window of n − k. Minimize that window's sum (or slide a k-window across the wrap).",1],
+   ["frequency-of-the-most-frequent-element",1838,"Frequency of the Most Frequent Element","M",0,"Sort. Window [l, r] is fixable if nums[r]·len − windowSum ≤ k. Grow r and shrink l when it isn't.",1],
+   ["maximum-number-of-occurrences-of-a-substring",1297,"Maximum Number of Occurrences of a Substring","M",0,"Only minSize matters: a longer substring that repeats implies its minSize prefix repeats too. Count every minSize window with ≤ maxLetters distinct letters.",1],
+   ["sliding-window-maximum",239,"Sliding Window Maximum","H",0,"Monotonic deque of indices with decreasing values. Pop smaller values from the back, pop expired indices from the front; the front is the window max.",1]]},
   {name:"Stack",idea:"Use a stack when the most recent unmatched item decides what happens next: brackets, nesting, and 'next greater element' (monotonic stack).",probs:[
    ["valid-parentheses",20,"Valid Parentheses","E",1,"Push openers. On a closer, the top of the stack must be its matching opener. The stack must be empty at the end."],
    ["min-stack",155,"Min Stack","M",1,"Store pairs of (value, minimum so far), or keep a second stack of minimums."],
    ["evaluate-reverse-polish-notation",150,"Evaluate Reverse Polish Notation","M",0,"Push numbers. On an operator, pop b then a and push a op b. Division truncates toward zero."],
    ["daily-temperatures",739,"Daily Temperatures","M",1,"Monotonic decreasing stack of indices. When a warmer day arrives, pop and fill in the answer for each popped index."],
-   ["decode-string",394,"Decode String","M",0,"Two stacks, one for counts and one for partial strings. On ']', pop and repeat the current string, then append it to the previous one."]]}]},
- {day:3,title:"Binary search and dynamic programming",patterns:[
+   ["decode-string",394,"Decode String","M",0,"Two stacks, one for counts and one for partial strings. On ']', pop and repeat the current string, then append it to the previous one."],
+   ["baseball-game",682,"Baseball Game","E",0,"Simulate with a stack: push numbers, '+' pushes the sum of the top two, 'D' doubles the top, 'C' pops.",1],
+   ["next-greater-element-i",496,"Next Greater Element I","E",0,"Monotonic stack over nums2 builds a map of value → next greater. Look up each nums1 value.",1],
+   ["next-greater-element-ii",503,"Next Greater Element II","M",0,"Run the next-greater stack over 2n indices (i % n) to handle the wrap.",1],
+   ["asteroid-collision",735,"Asteroid Collision","M",0,"Push right-movers. A left-mover pops smaller right-movers, both explode on equal size, and it survives only if the stack has no right-movers left.",1],
+   ["online-stock-span",901,"Online Stock Span","M",0,"Stack of (price, span). Pop every entry with price ≤ today's and add its span to today's.",1],
+   ["remove-k-digits",402,"Remove K Digits","M",0,"Monotonic increasing stack: while k > 0 and the top is bigger than the current digit, pop. Trim leftover k from the end and strip leading zeros.",1],
+   ["remove-duplicate-letters",316,"Remove Duplicate Letters","M",0,"Monotonic stack plus last-seen index. Pop a bigger top if it appears again later, and skip letters already in the stack.",1],
+   ["basic-calculator-ii",227,"Basic Calculator II","M",0,"Keep the last operator. For + and −, push ±num; for * and /, pop, combine and push. Sum the stack at the end.",1],
+   ["maximum-nesting-depth-of-two-valid-parentheses-strings",1111,"Maximum Nesting Depth of Two Valid Parentheses Strings","M",0,"Split by depth parity: give each '(' at odd depth to A and even depth to B (and the matching ')' the same).",1],
+   ["using-a-robot-to-print-the-lexicographically-smallest-string",2434,"Using a Robot to Print the Lexicographically Smallest String","M",0,"Push characters onto a stack. Pop to the answer while the top is ≤ the smallest character still remaining in s (use a suffix min).",1],
+   ["beautiful-towers-ii",2866,"Beautiful Towers II","M",0,"For each peak, the best heights to its left are a monotonic stack sum. Compute left[i] and right[i] with stacks and take max(left[i] + right[i] − h[i]).",1],
+   ["largest-rectangle-in-histogram",84,"Largest Rectangle in Histogram","H",0,"Monotonic increasing stack of indices. When a shorter bar arrives, pop and compute area with the popped height and width between the new top and i.",1],
+   ["longest-valid-parentheses",32,"Longest Valid Parentheses","H",0,"Stack of indices seeded with −1. Push '(' indices; on ')', pop, and if empty push i as the new base, otherwise length = i − top.",1]]},
+  {name:"Strings",idea:"Know your string tools: compare character by character, build results with a list instead of +=, and use counts or sorting for frequency questions.",probs:[
+   ["longest-common-prefix",14,"Longest Common Prefix","E",0,"Take the first word and shorten it until every other word starts with it. Or sort and compare only the first and last words.",1],
+   ["find-the-index-of-the-first-occurrence-in-a-string",28,"Find the Index of the First Occurrence in a String","E",0,"Try each start and compare. Learn KMP's failure table as the O(n + m) follow-up.",1],
+   ["length-of-last-word",58,"Length of Last Word","E",0,"Scan from the end: skip trailing spaces, then count letters until the next space.",1],
+   ["count-binary-substrings",696,"Count Binary Substrings","E",0,"Group lengths of consecutive equal characters. Add min(prev, cur) for each neighbouring pair of groups.",1],
+   ["zigzag-conversion",6,"Zigzag Conversion","M",0,"Simulate rows: append each character to the current row and flip direction at the top and bottom rows.",1],
+   ["sort-characters-by-frequency",451,"Sort Characters By Frequency","M",0,"Count characters, then bucket them by frequency (or sort by count) and build the output from highest to lowest.",1],
+   ["longest-substring-of-one-repeating-character",2213,"Longest Substring of One Repeating Character","H",0,"Segment tree where each node stores its longest run, prefix run and suffix run, plus its boundary characters. Update a point, then read the root.",1]]}]},
+ {day:3,title:"Binary search, DP and greedy",patterns:[
   {name:"Binary Search",idea:"Halve the search space each step. Works on sorted arrays and also on answer spaces: 'find the smallest x where a condition becomes true'.",probs:[
    ["binary-search",704,"Binary Search","E",1,"Standard lo ≤ hi loop with mid = lo + (hi − lo) / 2. Get the boundary updates exactly right here, as later problems reuse them."],
    ["search-a-2d-matrix",74,"Search a 2D Matrix","M",0,"Treat the matrix as one sorted array of length m·n. Index i maps to row i / n and column i % n."],
    ["search-in-rotated-sorted-array",33,"Search in Rotated Sorted Array","M",1,"At each mid, one half is sorted. Check whether the target lies in that sorted half, then discard the other half."],
    ["find-minimum-in-rotated-sorted-array",153,"Find Minimum in Rotated Sorted Array","M",0,"Compare mid with hi. If nums[mid] > nums[hi], the minimum is to the right; otherwise it's at mid or to the left."],
-   ["koko-eating-bananas",875,"Koko Eating Bananas","M",1,"Binary search on speed from 1 to max(piles). For each speed, total hours = Σ ceil(pile / speed). Find the smallest speed that fits h."]]},
+   ["koko-eating-bananas",875,"Koko Eating Bananas","M",1,"Binary search on speed from 1 to max(piles). For each speed, total hours = Σ ceil(pile / speed). Find the smallest speed that fits h."],
+   ["search-insert-position",35,"Search Insert Position","E",0,"Lower bound: the first index where nums[i] ≥ target.",1],
+   ["find-first-and-last-position-of-element-in-sorted-array",34,"Find First and Last Position of Element in Sorted Array","M",0,"Run lower bound twice: once for target and once for target + 1. Return [lo, hi − 1] if target exists.",1],
+   ["find-peak-element",162,"Find Peak Element","M",0,"If nums[mid] < nums[mid + 1], a peak is to the right; otherwise mid or left. O(log n).",1],
+   ["search-a-2d-matrix-ii",240,"Search a 2D Matrix II","M",0,"Start top-right. Too big → move left; too small → move down. O(m + n).",1],
+   ["capacity-to-ship-packages-within-d-days",1011,"Capacity To Ship Packages Within D Days","M",0,"Binary search on capacity from max(weights) to sum(weights). Greedily count days for each capacity.",1],
+   ["maximum-value-at-a-given-index-in-a-bounded-array",1802,"Maximum Value at a Given Index in a Bounded Array","M",0,"Binary search on the peak value. The minimal sum for a peak is two decreasing arithmetic runs that floor at 1; check it against maxSum.",1],
+   ["house-robber-iv",2560,"House Robber IV","M",0,"Binary search on capability. For a cap, greedily rob every house ≤ cap skipping neighbours, and check you get k houses.",1],
+   ["split-array-largest-sum",410,"Split Array Largest Sum","H",0,"Binary search on the largest subarray sum. Greedily count pieces for each limit; ≤ k pieces means feasible.",1],
+   ["find-in-mountain-array",1095,"Find in Mountain Array","H",0,"Find the peak with binary search, then binary search the ascending half, then the descending half.",1],
+   ["median-of-two-sorted-arrays",4,"Median of Two Sorted Arrays","H",0,"Binary search a cut in the smaller array so left halves of both hold (m + n + 1) / 2 items and every left value ≤ every right value.",1]]},
   {name:"Dynamic Programming",idea:"Define what dp[i] means in one sentence, write the recurrence from smaller cases, set base cases, then pick an order that fills dependencies first.",probs:[
    ["climbing-stairs",70,"Climbing Stairs","E",1,"dp[i] = dp[i−1] + dp[i−2]. You only need the last two values."],
    ["house-robber",198,"House Robber","M",1,"dp[i] = max(dp[i−1], dp[i−2] + nums[i]): skip this house or rob it."],
    ["coin-change",322,"Coin Change","M",1,"dp[amount] = min over coins of dp[amount − coin] + 1. Initialize to infinity, with dp[0] = 0."],
    ["word-break",139,"Word Break","M",0,"dp[i] is true if some j < i has dp[j] true and s[j:i] in the dictionary. Use a set for the words."],
-   ["longest-palindromic-substring",5,"Longest Palindromic Substring","M",0,"Expand around each center (2n − 1 centers, odd and even lengths) and keep the longest. O(n²) time, O(1) space."]]}]},
- {day:4,title:"Trees and graphs",patterns:[
+   ["longest-palindromic-substring",5,"Longest Palindromic Substring","M",0,"Expand around each center (2n − 1 centers, odd and even lengths) and keep the longest. O(n²) time, O(1) space."],
+   ["fibonacci-number",509,"Fibonacci Number","E",0,"Iterate with two variables: a, b = b, a + b.",1],
+   ["maximum-subarray",53,"Maximum Subarray","M",0,"Kadane: cur = max(x, cur + x), best = max(best, cur).",1],
+   ["maximum-sum-circular-subarray",918,"Maximum Sum Circular Subarray","M",0,"Answer is max(maxSubarray, total − minSubarray). If every number is negative, return maxSubarray.",1],
+   ["longest-increasing-subsequence",300,"Longest Increasing Subsequence","M",0,"Patience sorting: keep tails[], and binary search where each number goes. Length of tails is the answer. O(n log n).",1],
+   ["longest-palindromic-subsequence",516,"Longest Palindromic Subsequence","M",0,"dp[i][j] = dp[i+1][j−1] + 2 if s[i] == s[j], else max(dp[i+1][j], dp[i][j−1]). Or LCS of s and reverse(s).",1],
+   ["decode-ways",91,"Decode Ways","M",0,"dp[i] = dp[i−1] if s[i−1] ≠ '0', plus dp[i−2] if s[i−2..i−1] is 10–26.",1],
+   ["target-sum",494,"Target Sum","M",0,"Pick a plus subset P with sum(P) = (total + target) / 2. Count subsets with a 0/1 knapsack. Check parity and bounds first.",1],
+   ["delete-and-earn",740,"Delete and Earn","M",0,"Bucket points by value (value × count). It becomes House Robber over values.",1],
+   ["minimum-path-sum",64,"Minimum Path Sum","M",0,"dp[i][j] = grid[i][j] + min(top, left). One row of memory is enough.",1],
+   ["stone-game",877,"Stone Game","M",0,"dp[i][j] = best score difference for piles i..j. Alice always wins here, but write the interval DP anyway.",1],
+   ["stone-game-ii",1140,"Stone Game II","M",0,"Suffix sums plus memo on (i, M): best = max over X in 1..2M of suffix[i] − dp(i + X, max(M, X)).",1],
+   ["minimum-difficulty-of-a-job-schedule",1335,"Minimum Difficulty of a Job Schedule","H",0,"dp[i][d] = min difficulty to schedule jobs i.. in d days. Try each end of today's block, tracking the running max.",1],
+   ["distinct-subsequences",115,"Distinct Subsequences","H",0,"dp[i][j] = ways to form t[0..j) from s[0..i). If chars match, dp[i−1][j−1] + dp[i−1][j]; otherwise dp[i−1][j].",1],
+   ["distinct-subsequences-ii",940,"Distinct Subsequences II","H",0,"dp = number of distinct subsequences ending at each letter. For a new char c: end[c] = sum(end) + 1. Mod 1e9+7.",1],
+   ["wildcard-matching",44,"Wildcard Matching","H",0,"dp[i][j]: does s[0..i) match p[0..j)? '*' → dp[i][j−1] or dp[i−1][j]; '?' or equal → dp[i−1][j−1].",1],
+   ["burst-balloons",312,"Burst Balloons","H",0,"Think of k as the last balloon burst in (i, j): dp[i][j] = max dp[i][k] + dp[k][j] + v[i]·v[k]·v[j], with 1s padded at both ends.",1],
+   ["count-non-decreasing-arrays-with-given-digit-sums",3883,"Count Non Decreasing Arrays With Given Digit Sums","H",0,"Group 0..5000 by digit sum. dp over positions: for each value v with digit sum digitSum[i], ways = Σ dp[i−1][u ≤ v]. Use prefix sums over sorted values.",1]]},
+  {name:"Greedy & Intervals",idea:"Greedy works when a local choice can't hurt later choices. For intervals, sort by start (to merge) or by end (to keep the most non-overlapping).",probs:[
+   ["jump-game",55,"Jump Game","M",0,"Track the farthest index reachable. If i ever passes it, return false.",1],
+   ["jump-game-ii",45,"Jump Game II","M",0,"BFS by levels: the current jump covers [start, end]; the next one reaches the farthest point from it. Count levels.",1],
+   ["merge-intervals",56,"Merge Intervals","M",0,"Sort by start. Extend the last merged interval when the next start ≤ its end, otherwise start a new one.",1],
+   ["non-overlapping-intervals",435,"Non-overlapping Intervals","M",0,"Sort by end and keep each interval that starts at or after the last kept end. Removed = n − kept.",1],
+   ["task-scheduler",621,"Task Scheduler","M",0,"Let f be the top frequency and m how many tasks have it. Answer = max(len(tasks), (f − 1)·(n + 1) + m).",1],
+   ["increasing-triplet-subsequence",334,"Increasing Triplet Subsequence","M",0,"Keep first and second as the smallest and second-smallest seen. Any number bigger than both finishes a triplet.",1],
+   ["largest-number",179,"Largest Number","M",0,"Sort numbers as strings with the comparator a + b > b + a. Return '0' if the biggest is '0'.",1],
+   ["destroying-asteroids",2126,"Destroying Asteroids","M",0,"Sort ascending and absorb asteroids smallest first. If one is ever bigger than your mass, you lose.",1],
+   ["valid-parenthesis-string",678,"Valid Parenthesis String","M",0,"Track the range [lo, hi] of possible open counts. '(' raises both, ')' lowers both, '*' widens. Clamp lo at 0 and fail if hi < 0.",1]]}]},
+ {day:4,title:"Trees, graphs and backtracking",patterns:[
   {name:"Trees (DFS & BFS)",idea:"Most tree problems are a recursive DFS that returns something to its parent. Use BFS with a queue when the problem is about levels.",probs:[
    ["maximum-depth-of-binary-tree",104,"Maximum Depth of Binary Tree","E",1,"Depth = 1 + max(depth(left), depth(right)). An empty node has depth 0."],
    ["binary-tree-level-order-traversal",102,"Binary Tree Level Order Traversal","M",1,"BFS with a queue. Process one level at a time by looping over the queue's size at the start of each level."],
    ["validate-binary-search-tree",98,"Validate Binary Search Tree","M",1,"Pass down (low, high) bounds, not just a comparison with the parent. Or check that an in-order traversal is strictly increasing."],
    ["lowest-common-ancestor-of-a-binary-tree",236,"Lowest Common Ancestor of a Binary Tree","M",0,"Recurse. If the node is p or q, return it. If both sides return something, this node is the LCA; otherwise pass up whichever side isn't null."],
-   ["serialize-and-deserialize-binary-tree",297,"Serialize and Deserialize Binary Tree","H",0,"Preorder with a null marker, e.g. '1,2,#,#,3,#,#'. Deserialize by reading tokens with an iterator in the same order."]]},
+   ["serialize-and-deserialize-binary-tree",297,"Serialize and Deserialize Binary Tree","H",0,"Preorder with a null marker, e.g. '1,2,#,#,3,#,#'. Deserialize by reading tokens with an iterator in the same order."],
+   ["same-tree",100,"Same Tree","E",0,"Recurse: both null → true; one null or values differ → false; else compare left and right subtrees.",1],
+   ["invert-binary-tree",226,"Invert Binary Tree","E",0,"Swap left and right at every node, recursively or with a queue.",1],
+   ["balanced-binary-tree",110,"Balanced Binary Tree","E",0,"Return the height, or −1 as soon as any subtree's heights differ by more than 1.",1],
+   ["diameter-of-binary-tree",543,"Diameter of Binary Tree","E",0,"At each node, left height + right height is a candidate diameter. Return 1 + max(left, right) upward.",1],
+   ["subtree-of-another-tree",572,"Subtree of Another Tree","E",0,"For each node in root, check sameTree(node, subRoot). Serialization plus string search also works.",1],
+   ["binary-tree-preorder-traversal",144,"Binary Tree Preorder Traversal","E",0,"Root, left, right. Iteratively: pop a node, visit it, push right then left.",1],
+   ["all-nodes-distance-k-in-binary-tree",863,"All Nodes Distance K in Binary Tree","M",0,"Record parent pointers with a DFS, then BFS from target outward k steps through left, right and parent.",1],
+   ["path-sum-iii",437,"Path Sum III","M",0,"Prefix-sum counts along the root-to-node path (like Subarray Sum Equals K). Undo the count when backtracking.",1],
+   ["binary-tree-maximum-path-sum",124,"Binary Tree Maximum Path Sum","H",0,"Each node returns its best downward path max(0, left, right) + val, and updates the global best with val + left + right.",1]]},
   {name:"Graphs",idea:"Model the input as nodes and edges, then choose BFS for shortest steps, DFS for exploring or counting components, or topological sort for dependencies. Track visited nodes.",probs:[
    ["number-of-islands",200,"Number of Islands","M",1,"Scan the grid. On each unvisited land cell, count an island and flood-fill it with DFS or BFS, marking cells visited."],
    ["rotting-oranges",994,"Rotting Oranges","M",1,"Multi-source BFS: queue all rotten oranges at time 0 and spread minute by minute. Return −1 if fresh ones remain."],
    ["course-schedule",207,"Course Schedule","M",1,"Detect a cycle in a directed graph. Kahn's algorithm: repeatedly take nodes with in-degree 0. It's possible if every node is taken."],
    ["clone-graph",133,"Clone Graph","M",0,"DFS or BFS with a map of original → copy. Create a copy the first time you see a node, then wire up neighbors."],
-   ["word-ladder",127,"Word Ladder","H",0,"BFS from the start word. Neighbors are words differing by one letter; use wildcard patterns like h*t to find them quickly."]]}]},
- {day:5,title:"Linked lists and heaps",patterns:[
+   ["word-ladder",127,"Word Ladder","H",0,"BFS from the start word. Neighbors are words differing by one letter; use wildcard patterns like h*t to find them quickly."],
+   ["flood-fill",733,"Flood Fill","E",0,"DFS or BFS from the start pixel, recolouring cells with the original colour. Return early if the colour is already new.",1],
+   ["surrounded-regions",130,"Surrounded Regions","M",0,"Flood-fill 'O's connected to the border and mark them safe. Flip every other 'O' to 'X', then restore the safe ones.",1],
+   ["course-schedule-ii",210,"Course Schedule II","M",0,"Kahn's algorithm, recording the order nodes come off the queue. If fewer than n come off, return [].",1],
+   ["time-needed-to-inform-all-employees",1376,"Time Needed to Inform All Employees","M",0,"Build the manager → reports tree. DFS from the head; time to reach a node is the parent's time plus the manager's informTime. Take the max.",1],
+   ["accounts-merge",721,"Accounts Merge","M",0,"Union-find over emails: union every email in an account with its first email. Group by root, sort, and attach the name.",1],
+   ["alien-dictionary",269,"Alien Dictionary","H",0,"Compare adjacent words to get one ordering edge each (first differing letter). Topologically sort the letters. A longer word before its own prefix is invalid. (Premium.)",1],
+   ["minimum-edge-reversals-so-every-node-is-reachable",2858,"Minimum Edge Reversals So Every Node Is Reachable","H",0,"Rerooting: store each edge both ways with cost 0 forward and 1 backward. DFS from 0 for its total, then ans[child] = ans[parent] + 1 if the edge was forward, else − 1.",1]]},
+  {name:"Backtracking",idea:"Build a candidate step by step, recurse, then undo the step. Prune branches that can't lead to a valid answer.",probs:[
+   ["subsets",78,"Subsets","M",0,"At each index, choose to include or skip the element. Or iterate: every new number doubles the existing subsets.",1],
+   ["permutations",46,"Permutations","M",0,"Swap each remaining element into position i and recurse, or track a used[] array.",1],
+   ["generate-parentheses",22,"Generate Parentheses","M",0,"Add '(' while open < n, and ')' while close < open. Record the string at length 2n.",1],
+   ["letter-combinations-of-a-phone-number",17,"Letter Combinations of a Phone Number","M",0,"DFS over digits. For each letter of the current digit, append it and recurse to the next digit.",1],
+   ["combination-sum-iii",216,"Combination Sum III","M",0,"Choose numbers 1–9 in increasing order with remaining k and sum. Stop when either goes to zero or negative.",1],
+   ["beautiful-arrangement",526,"Beautiful Arrangement","M",0,"Place numbers into positions 1..n. Only place value v at position p if v % p == 0 or p % v == 0, with a used bitmask.",1],
+   ["word-search",79,"Word Search","M",0,"DFS from each cell matching the first letter. Mark the cell visited while exploring, and unmark when backtracking.",1],
+   ["restore-ip-addresses",93,"Restore IP Addresses","M",0,"Split into exactly four parts of length 1–3. Each part must be ≤ 255 with no leading zero (except '0').",1],
+   ["n-queens",51,"N-Queens","H",0,"Place one queen per row. Track used columns and both diagonals (r − c and r + c) in sets.",1]]}]},
+ {day:5,title:"Lists, heaps, design and SQL",patterns:[
   {name:"Linked List",idea:"Draw the pointers before coding. A dummy head removes edge cases, and fast and slow pointers find middles and cycles.",probs:[
    ["reverse-linked-list",206,"Reverse Linked List","E",1,"Iterate with prev, curr and next. Point curr.next at prev, then advance. Also try it recursively."],
    ["merge-two-sorted-lists",21,"Merge Two Sorted Lists","E",1,"Dummy head plus a tail pointer. Attach the smaller node each step, then attach whatever remains."],
    ["add-two-numbers",2,"Add Two Numbers","M",0,"Digits are stored in reverse, so walk both lists together, adding with a carry. Don't forget a final carry."],
    ["copy-list-with-random-pointer",138,"Copy List with Random Pointer","M",0,"Map of original → copy in two passes. Or, for O(1) space, weave copies between originals, set random pointers, then unweave."],
-   ["lru-cache",146,"LRU Cache","M",1,"Hash map of key → node, plus a doubly linked list ordered by recency. Move a node to the front on get or put, and evict from the tail."]]},
+   ["lru-cache",146,"LRU Cache","M",1,"Hash map of key → node, plus a doubly linked list ordered by recency. Move a node to the front on get or put, and evict from the tail."],
+   ["linked-list-cycle",141,"Linked List Cycle","E",0,"Fast and slow pointers. If they meet, there's a cycle.",1],
+   ["middle-of-the-linked-list",876,"Middle of the Linked List","E",0,"Fast moves two, slow moves one. When fast reaches the end, slow is at the middle.",1],
+   ["intersection-of-two-linked-lists",160,"Intersection of Two Linked Lists","E",0,"Two pointers that switch to the other list's head at the end. They meet at the intersection or both reach null.",1],
+   ["reverse-linked-list-ii",92,"Reverse Linked List II","M",0,"Dummy head, walk to node left − 1, then reverse right − left + 1 nodes in place by moving each next node to the front.",1],
+   ["reorder-list",143,"Reorder List","M",0,"Find the middle, reverse the second half, then merge the two halves alternately.",1],
+   ["reverse-nodes-in-k-group",25,"Reverse Nodes in k-Group","H",0,"Check k nodes exist, reverse that group, connect it to the previous tail, and repeat. A dummy head keeps it clean.",1]]},
   {name:"Heap / Priority Queue",idea:"Use a heap when you repeatedly need the smallest or largest item. For 'top k', keep a heap of size k.",probs:[
    ["kth-largest-element-in-a-stream",703,"Kth Largest Element in a Stream","E",0,"Keep a min-heap of size k. Its top is always the kth largest."],
    ["kth-largest-element-in-an-array",215,"Kth Largest Element in an Array","M",1,"A min-heap of size k gives O(n log k). Quickselect averages O(n) and is worth knowing."],
    ["top-k-frequent-elements",347,"Top K Frequent Elements","M",1,"Count with a map, then keep a size-k heap by frequency. Or use bucket sort by frequency for O(n)."],
    ["merge-k-sorted-lists",23,"Merge k Sorted Lists","H",1,"Min-heap of the current head from each list. Pop the smallest, append it, and push its next node. O(N log k)."],
-   ["find-median-from-data-stream",295,"Find Median from Data Stream","H",0,"Two heaps: a max-heap for the lower half and a min-heap for the upper half. Rebalance so their sizes differ by at most 1."]]}]},
- {day:6,round:2,title:"Arrays and pointers, round 2",patterns:[
-  {name:"Arrays & Hashing",idea:"Round 2 leans on in-place tricks: reuse the input as scratch space, and use prefix sums with a map of first-seen indices.",probs:[
-   ["next-permutation",31,"Next Permutation","M",1,"From the right, find the first i with nums[i] < nums[i+1]. Swap it with the rightmost element larger than it, then reverse everything after i. If there's no such i, reverse the whole array.",1],
-   ["maximum-subarray",53,"Maximum Subarray","M",1,"Kadane's algorithm: cur = max(x, cur + x) and best = max(best, cur). Be ready to explain why dropping a negative running sum is safe.",1],
-   ["rotate-image",48,"Rotate Image","M",1,"Transpose in place (swap [i][j] with [j][i] for j > i), then reverse each row. That's a 90° clockwise turn.",1],
-   ["set-matrix-zeroes",73,"Set Matrix Zeroes","M",0,"For O(1) space, use the first row and column as markers. Record separately whether row 0 and column 0 themselves need zeroing, and clear them last.",1],
-   ["contiguous-array",525,"Contiguous Array","M",0,"Treat 0 as −1, so equal 0s and 1s means a sum of 0. Store the first index of each prefix sum, seeded with {0: −1}, and measure the gap when a sum repeats.",0]]},
-  {name:"Two Pointers",idea:"Beyond sorted pairs: fill arrays from the back, and use fast and slow pointers on an array treated as a linked list.",probs:[
-   ["merge-sorted-array",88,"Merge Sorted Array","E",1,"Fill from the back. Write the larger of the two remaining tails at position m + n − 1 and move down, then copy whatever is left of nums2.",0],
-   ["4sum",18,"4Sum","M",1,"Sort, fix two indices with nested loops, then two-pointer the rest. Skip duplicates at every level, and watch for overflow if your ints are 32-bit.",0],
-   ["find-the-duplicate-number",287,"Find the Duplicate Number","M",1,"Treat i → nums[i] as a linked list; the duplicate is where the cycle starts. Run Floyd's slow and fast pointers to meet, then restart one from 0 and step both by one.",0],
-   ["partition-array-according-to-given-pivot",2161,"Partition Array According to Given Pivot","M",0,"Relative order must stay the same, so don't swap. Write the smaller values, then the pivots, then the larger values, in separate passes or with front and back write pointers.",0],
-   ["heaters",475,"Heaters","M",0,"Sort both arrays. For each house, find the nearest heater with binary search or a pointer that only moves forward. The answer is the largest of those distances.",0]]}]},
- {day:7,round:2,title:"Windows and stacks, round 2",patterns:[
-  {name:"Sliding Window",idea:"Harder windows: a deque for the window maximum, a cost formula to decide when to shrink, and atMost(k) − atMost(k − 1) for 'exactly k'.",probs:[
-   ["maximum-average-subarray-i",643,"Maximum Average Subarray I","E",0,"Fixed window of size k. Add the new element, subtract the one leaving, track the best sum and divide by k at the end.",0],
-   ["permutation-in-string",567,"Permutation in String","M",1,"A window of length s1 sliding over s2, comparing 26-letter counts. Return true on the first match.",1],
-   ["frequency-of-the-most-frequent-element",1838,"Frequency of the Most Frequent Element","M",1,"Sort. Raising window [l, r] to nums[r] costs nums[r] × length − windowSum. Shrink from the left while that cost is more than k.",0],
-   ["sliding-window-maximum",239,"Sliding Window Maximum","H",1,"Monotonic deque of indices with decreasing values. Pop smaller values off the back before pushing, drop the front once it leaves the window, and read the max from the front.",1],
-   ["subarrays-with-k-different-integers",992,"Subarrays with K Different Integers","H",0,"exactly(k) = atMost(k) − atMost(k − 1). atMost is a normal window with a count map, and each right edge adds right − left + 1 subarrays.",0]]},
-  {name:"Stack",idea:"Monotonic stacks answer 'next smaller or greater' and 'how far can this bar stretch'. A stack of saved state handles nested expressions.",probs:[
-   ["final-prices-with-a-special-discount-in-a-shop",1475,"Final Prices With a Special Discount in a Shop","E",0,"Find the next smaller-or-equal price to the right. Keep an increasing stack of indices, and when a price ≤ the top arrives, pop and apply the discount.",0],
-   ["next-greater-element-ii",503,"Next Greater Element II","M",1,"The array is circular, so loop i from 0 to 2n − 1 using i % n with a decreasing stack of indices. Only push indices on the first pass.",0],
-   ["largest-rectangle-in-histogram",84,"Largest Rectangle in Histogram","H",1,"Increasing stack of indices. When a shorter bar arrives, pop: the popped bar's rectangle spans from the new top + 1 to i − 1. Add a 0-height bar at the end to flush the stack.",0],
-   ["basic-calculator",224,"Basic Calculator","H",1,"Track result, the current number and sign. On '(', push result and sign, then reset them. On ')', finish the number and combine: result = pushedResult + pushedSign × result.",0],
-   ["longest-valid-parentheses",32,"Longest Valid Parentheses","H",0,"Stack of indices seeded with −1. Push on '('. On ')', pop; if the stack is now empty push i as the new base, otherwise the valid length is i − top.",0]]}]},
- {day:8,round:2,title:"Binary search and DP, round 2",patterns:[
-  {name:"Binary Search",idea:"Most of these search the answer, not the array: guess a value, check it greedily, and move toward the smallest guess that works.",probs:[
-   ["single-element-in-a-sorted-array",540,"Single Element in a Sorted Array","M",1,"Before the single element, pairs start at even indices; after it, at odd ones. Keep mid even: if nums[mid] == nums[mid + 1], go right, otherwise go left.",0],
-   ["capacity-to-ship-packages-within-d-days",1011,"Capacity To Ship Packages Within D Days","M",1,"Search capacity between max(weights) and sum(weights). For each guess, greedily count the days needed, and find the smallest capacity that fits.",1],
-   ["find-the-smallest-divisor-given-a-threshold",1283,"Find the Smallest Divisor Given a Threshold","M",0,"Same shape as Koko: search divisors from 1 to max(nums), summing ceil(n / d) for each guess.",0],
-   ["split-array-largest-sum",410,"Split Array Largest Sum","H",1,"Search the answer between max(nums) and sum(nums). For a guess, start a new piece whenever the running sum would go over it. The guess works if you need k pieces or fewer.",0],
-   ["median-of-two-sorted-arrays",4,"Median of Two Sorted Arrays","H",0,"Binary search a cut in the shorter array so the two left parts hold half the elements. The cut is right when maxLeftA ≤ minRightB and maxLeftB ≤ minRightA. O(log min(m, n)).",0]]},
-  {name:"Dynamic Programming",idea:"Round 2 moves to 2D tables: grids, two strings, and knapsack counting. Say what dp[i][j] means before writing the recurrence.",probs:[
-   ["unique-paths",62,"Unique Paths","M",1,"dp[r][c] = dp[r−1][c] + dp[r][c−1], with the first row and column all 1. A single row of length n is enough memory.",1],
-   ["longest-increasing-subsequence",300,"Longest Increasing Subsequence","M",1,"O(n²): dp[i] = 1 + max dp[j] for j < i with nums[j] < nums[i]. O(n log n): keep tails[k] as the smallest tail of an increasing run of length k + 1 and binary search each number's place.",0],
-   ["coin-change-ii",518,"Coin Change II","M",0,"You're counting combinations, not orderings, so loop over coins on the outside and amounts on the inside: dp[a] += dp[a − coin], with dp[0] = 1.",0],
-   ["edit-distance",72,"Edit Distance","M",1,"dp[i][j] = edits to turn word1[:i] into word2[:j]. If the letters match, take dp[i−1][j−1]; otherwise 1 + the minimum of insert, delete and replace.",0],
-   ["regular-expression-matching",10,"Regular Expression Matching","H",0,"dp[i][j] = s[:i] matches p[:j]. For '*', either use zero copies of the previous token (dp[i][j−2]) or, if it matches s[i−1], consume one character (dp[i−1][j]).",0]]}]},
- {day:9,round:2,title:"Trees and graphs, round 2",patterns:[
-  {name:"Trees (DFS & BFS)",idea:"The DFS returns one thing to its parent while updating a global answer with another. Diameter and max path sum are the classic examples.",probs:[
-   ["diameter-of-binary-tree",543,"Diameter of Binary Tree","E",1,"DFS returns height. At each node, left height + right height is a candidate diameter; keep a running max.",1],
-   ["kth-smallest-element-in-a-bst",230,"Kth Smallest Element in a BST","M",1,"In-order traversal visits a BST in sorted order. Stop at the kth node; an iterative stack makes stopping early easy.",1],
-   ["construct-binary-tree-from-preorder-and-inorder-traversal",105,"Construct Binary Tree from Preorder and Inorder Traversal","M",1,"The next preorder value is the root, and its position in inorder splits the left and right subtrees. Use a map of value → inorder index and a moving preorder pointer.",0],
-   ["all-nodes-distance-k-in-binary-tree",863,"All Nodes Distance K in Binary Tree","M",0,"Record each node's parent so the tree becomes an undirected graph, then BFS from the target for k levels.",0],
-   ["binary-tree-maximum-path-sum",124,"Binary Tree Maximum Path Sum","H",0,"DFS returns the best downward path from a node, ignoring negative children (max with 0). At each node, node + left + right is a candidate for the answer.",0]]},
-  {name:"Graphs",idea:"Add union-find for connectivity questions, and rerooting when you need an answer for every possible root.",probs:[
-   ["surrounded-regions",130,"Surrounded Regions","M",1,"Flip the question: flood-fill from every border 'O' and mark it safe. Then every 'O' that isn't safe becomes 'X'.",0],
-   ["redundant-connection",684,"Redundant Connection","M",1,"Union-find. Process edges in order; the first edge whose ends already share a root is the answer.",0],
-   ["accounts-merge",721,"Accounts Merge","M",1,"Union-find over emails. Union every email in an account with its first email, then group emails by root, sort each group and attach the name.",0],
-   ["making-a-large-island",827,"Making A Large Island","H",0,"Label each island with an id and record its size. For each 0, add 1 to the sizes of its distinct neighboring islands. Don't forget a grid that is all land.",0],
-   ["minimum-edge-reversals-so-every-node-is-reachable",2858,"Minimum Edge Reversals So Every Node Is Reachable","H",0,"Store each edge both ways: cost 0 forward, 1 reversed. DFS from node 0 to get its answer, then reroot: moving the root from u to v adds 1 if the edge was u→v and subtracts 1 if it was v→u.",0]]}]},
- {day:10,round:2,title:"Linked lists and heaps, round 2",patterns:[
-  {name:"Linked List",idea:"Round 2 combines the basics: find the middle, reverse a section, and splice it back. LFU Cache extends LRU Cache with one list per frequency.",probs:[
-   ["linked-list-cycle",141,"Linked List Cycle","E",1,"Slow and fast pointers. If they meet there's a cycle; if fast reaches the end there isn't.",1],
-   ["reverse-linked-list-ii",92,"Reverse Linked List II","M",1,"Dummy head. Walk to the node before position left, then repeatedly move the next node to the front of the sublist, right − left times.",1],
-   ["reorder-list",143,"Reorder List","M",1,"Three steps: find the middle with slow and fast pointers, reverse the second half, then merge the two halves alternately.",0],
-   ["reverse-nodes-in-k-group",25,"Reverse Nodes in k-Group","H",0,"Check that k nodes remain, reverse exactly those k, connect the previous group's tail to the new head, and continue. A short final group stays as it is.",1],
-   ["lfu-cache",460,"LFU Cache","H",0,"Map of key → node, map of frequency → doubly linked list (most recent first), and the current minimum frequency. On access, move the node to the next frequency's list; evict from the tail of the minimum-frequency list.",0]]},
-  {name:"Heap / Priority Queue",idea:"Heaps for scheduling: sort by start, push what has become available, and pop the most urgent item. A monotonic deque can replace a heap for sliding maximums.",probs:[
-   ["sort-characters-by-frequency",451,"Sort Characters By Frequency","M",1,"Count characters, then order them by count with a max-heap or bucket sort, writing each character count times.",1],
-   ["task-scheduler",621,"Task Scheduler","M",1,"Formula: (maxCount − 1) × (n + 1) + the number of tasks with maxCount, but never less than the total task count. Or simulate with a max-heap and a cooldown queue.",0],
-   ["maximum-number-of-events-that-can-be-attended",1353,"Maximum Number of Events That Can Be Attended","M",1,"Sort by start day. Sweep the days: push the end days of events starting today onto a min-heap, drop expired ones, and attend the one that ends soonest.",0],
-   ["find-k-pairs-with-smallest-sums",373,"Find K Pairs with Smallest Sums","M",0,"Push (nums1[i] + nums2[0], i, 0) for the first k values of i. Pop the smallest, record it, and push (i, j + 1). Repeat k times.",0],
-   ["jump-game-vi",1696,"Jump Game VI","M",0,"dp[i] = nums[i] + the max dp over the previous k indices. Keep that max in a monotonic deque, as in Sliding Window Maximum, for O(n).",0]]}]},
- {day:11,round:2,title:"New patterns: intervals, greedy and backtracking",patterns:[
-  {name:"Intervals & Greedy",idea:"Sort intervals by start or end and sweep once. Greedy works when you can argue the local choice, like the earliest-ending option, never hurts.",probs:[
-   ["merge-intervals",56,"Merge Intervals","M",1,"Sort by start. If the next interval starts at or before the last merged end, extend that end; otherwise start a new interval.",1],
-   ["partition-labels",763,"Partition Labels","M",1,"Record each letter's last index. Sweep, stretching the current part's end to the last index of each letter you see, and cut when i reaches that end.",1],
-   ["gas-station",134,"Gas Station","M",1,"If total gas < total cost, return −1. Otherwise sweep with a running tank, and whenever it goes negative, move the start to i + 1 and reset the tank.",1],
-   ["remove-covered-intervals",1288,"Remove Covered Intervals","M",0,"Sort by start ascending and end descending. An interval is covered exactly when its end is ≤ the largest end seen so far.",1],
-   ["jump-game-ii",45,"Jump Game II","M",0,"BFS by levels in one pass: track the farthest reach inside the current jump's range, and when i reaches that range's end, take a jump and extend the range.",0]]},
-  {name:"Backtracking",idea:"Build a candidate one choice at a time, recurse, then undo the choice. Prune early, and sort first when you need to skip duplicates.",probs:[
-   ["subsets",78,"Subsets","M",1,"At each index, include the number or don't. Or build iteratively: for each number, add it to a copy of every subset so far.",0],
-   ["generate-parentheses",22,"Generate Parentheses","M",1,"Add '(' while open < n and ')' while close < open. Every string that reaches length 2n is valid.",0],
-   ["combination-sum",39,"Combination Sum","M",1,"Recurse with a start index so the same combination isn't built in a different order. Reuse the current index, since numbers can repeat, and stop when the remaining target goes negative.",0],
-   ["letter-combinations-of-a-phone-number",17,"Letter Combinations of a Phone Number","M",0,"Map each digit to its letters and recurse one digit at a time, appending each letter. Return an empty list for an empty input.",0],
-   ["n-queens",51,"N-Queens","H",0,"Place one queen per row. Track used columns and both diagonals (r − c and r + c) in sets so each check is O(1).",0]]}]}
+   ["find-median-from-data-stream",295,"Find Median from Data Stream","H",0,"Two heaps: a max-heap for the lower half and a min-heap for the upper half. Rebalance so their sizes differ by at most 1."],
+   ["sort-an-array",912,"Sort an Array","M",0,"Write merge sort (stable, O(n log n)) or heap sort (in place). The interview wants one of them written from scratch, not the built-in sort.",1],
+   ["maximum-performance-of-a-team",1383,"Maximum Performance of a Team","H",0,"Sort engineers by efficiency descending. Keep a min-heap of the k largest speeds; at each engineer, performance = speedSum × current efficiency.",1],
+   ["the-skyline-problem",218,"The Skyline Problem","H",0,"Sweep x-coordinates. A max-heap of active heights (with lazy removal by end x) gives the current skyline height; record a point when it changes.",1]]},
+  {name:"Design & Trie",idea:"Design questions test whether you pick the right structure per operation. State each operation's complexity before coding.",probs:[
+   ["design-parking-system",1603,"Design Parking System","E",0,"Three counters, one per car type. Decrement on park if it's above 0.",1],
+   ["number-of-recent-calls",933,"Number of Recent Calls","E",0,"Queue of timestamps. Drop everything older than t − 3000, then return the size.",1],
+   ["insert-delete-getrandom-o1",380,"Insert Delete GetRandom O(1)","M",0,"Array of values plus a map value → index. Remove by swapping with the last element and popping. Random picks a random index.",1],
+   ["time-based-key-value-store",981,"Time Based Key-Value Store","M",0,"Map key → list of (timestamp, value). Timestamps arrive increasing, so binary search for the last one ≤ the query.",1],
+   ["implement-trie-prefix-tree",208,"Implement Trie (Prefix Tree)","M",0,"Each node has 26 children and an end flag. Insert and search walk one character per level.",1],
+   ["design-hit-counter",362,"Design Hit Counter","M",0,"Queue of hit timestamps, dropping those older than 300 s. For heavy traffic, use 300 circular buckets of (time, count). (Premium.)",1]]},
+  {name:"SQL, Pandas & JavaScript",idea:"A few questions in Microsoft's recent list are database and language warm-ups. Know JOIN types, GROUP BY with HAVING, window functions and self-joins.",probs:[
+   ["combine-two-tables",175,"Combine Two Tables","E",0,"LEFT JOIN Address on personId so people without an address still appear.",1],
+   ["customers-who-never-order",183,"Customers Who Never Order","E",0,"LEFT JOIN Orders and keep rows where the order id IS NULL (or use NOT IN).",1],
+   ["find-customer-referee",584,"Find Customer Referee","E",0,"WHERE referee_id != 2 OR referee_id IS NULL. A NULL comparison is never true on its own.",1],
+   ["triangle-judgement",610,"Triangle Judgement","E",0,"CASE WHEN x + y > z AND x + z > y AND y + z > x THEN 'Yes' ELSE 'No' END.",1],
+   ["replace-employee-id-with-the-unique-identifier",1378,"Replace Employee ID With The Unique Identifier","E",0,"LEFT JOIN EmployeeUNI on id so employees without a unique id show NULL.",1],
+   ["patients-with-a-condition",1527,"Patients With a Condition","E",0,"conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%': match at the start or after a space.",1],
+   ["duplicate-emails",182,"Duplicate Emails","E",0,"GROUP BY email HAVING COUNT(*) > 1.",1],
+   ["average-time-of-process-per-machine",1661,"Average Time of Process per Machine","E",0,"Self-join Activity on machine and process (start with end), then AVG(end − start) per machine, rounded to 3.",1],
+   ["create-a-dataframe-from-list",2877,"Create a DataFrame from List","E",0,"pd.DataFrame(student_data, columns=['student_id', 'age']).",1],
+   ["create-hello-world-function",2667,"Create Hello World Function","E",0,"Return a function that returns 'Hello World': () => 'Hello World'.",1],
+   ["game-play-analysis-iv",550,"Game Play Analysis IV","M",0,"Find each player's first login date, then count players who also logged in the next day. Divide by total players.",1],
+   ["consecutive-numbers",180,"Consecutive Numbers","M",0,"Self-join three times on id, id + 1, id + 2 with equal num, or use LAG/LEAD. Return DISTINCT nums.",1],
+   ["department-top-three-salaries",185,"Department Top Three Salaries","H",0,"DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) and keep rank ≤ 3.",1]]}]}
 ];
-const ROUNDS={
- 1:{title:"Core patterns",desc:"Ten patterns that cover most coding interview questions, five problems each, from warm-up to stretch."},
- 2:{title:"Microsoft, last 3 months",desc:"60 problems from LeetCode's Microsoft company tag for about mid-April to mid-July 2026, with none repeated from Round 1. Days 6–10 go deeper on the same ten patterns, and Day 11 adds intervals, greedy and backtracking. Problems marked 30d were also on the most recent 30-day list."}};
-const rnd=d=>d.round||1;
+const MS=new Set(["two-sum", "add-two-numbers", "longest-substring-without-repeating-characters", "longest-palindromic-substring", "palindrome-number", "container-with-most-water", "roman-to-integer", "3sum", "valid-parentheses", "merge-two-sorted-lists", "remove-duplicates-from-sorted-array", "next-permutation", "trapping-rain-water", "maximum-subarray", "merge-intervals", "best-time-to-buy-and-sell-stock", "lru-cache", "reverse-linked-list", "product-of-array-except-self", "subarray-sum-equals-k", "generate-parentheses", "n-queens", "sliding-window-maximum", "longest-repeating-character-replacement", "longest-common-prefix", "minimum-edge-reversals-so-every-node-is-reachable", "climbing-stairs", "copy-list-with-random-pointer", "fibonacci-number", "reorder-list", "find-the-index-of-the-first-occurrence-in-a-string", "contains-duplicate", "minimum-window-substring", "largest-rectangle-in-histogram", "min-stack", "longest-increasing-subsequence", "jump-game-ii", "rotting-oranges", "task-scheduler", "longest-consecutive-sequence", "combine-two-tables", "maximum-average-subarray-i", "next-greater-element-ii", "all-nodes-distance-k-in-binary-tree", "subsets", "binary-tree-maximum-path-sum", "balanced-binary-tree", "sort-characters-by-frequency", "reverse-string", "binary-search", "reverse-linked-list-ii", "search-a-2d-matrix", "longest-palindromic-subsequence", "merge-strings-alternately", "median-of-two-sorted-arrays", "single-number", "single-number-ii", "valid-anagram", "concatenation-of-array", "surrounded-regions", "capacity-to-ship-packages-within-d-days", "majority-element", "linked-list-cycle", "pascals-triangle", "diameter-of-binary-tree", "set-mismatch", "reverse-nodes-in-k-group", "move-zeroes", "beautiful-arrangement", "jump-game", "number-of-digit-one", "validate-binary-search-tree", "find-peak-element", "reverse-vowels-of-a-string", "burst-balloons", "house-robber", "can-place-flowers", "unique-email-addresses", "flood-fill", "number-of-unique-xor-triplets-i", "letter-combinations-of-a-phone-number", "valid-palindrome", "permutations", "frequency-of-the-most-frequent-element", "corporate-flight-bookings", "customers-who-never-order", "running-sum-of-1d-array", "the-skyline-problem", "top-k-frequent-elements", "coin-change", "same-tree", "spiral-matrix", "minimum-size-subarray-sum", "contains-duplicate-ii", "non-overlapping-intervals", "stone-game", "rotate-array", "wildcard-matching", "find-first-and-last-position-of-element-in-sorted-array", "invert-binary-tree", "smallest-divisible-digit-product-i", "add-binary", "intersection-of-two-linked-lists", "stone-game-ii", "find-customer-referee", "asteroid-collision", "consecutive-numbers-sum", "increasing-triplet-subsequence", "combination-sum-iii", "minimum-difficulty-of-a-job-schedule", "longest-substring-of-one-repeating-character", "remove-k-digits", "find-the-largest-almost-missing-integer", "decode-ways", "smallest-missing-integer-greater-than-sequential-prefix-sum", "substrings-of-size-three-with-distinct-characters", "maximum-sum-circular-subarray", "backspace-string-compare", "3sum-closest", "target-sum", "kth-largest-element-in-an-array", "baseball-game", "find-in-mountain-array", "range-sum-query-immutable", "smallest-missing-multiple-of-k", "create-hello-world-function", "merge-sorted-array", "maximum-value-at-a-given-index-in-a-bounded-array", "maximum-depth-of-binary-tree", "remove-element", "maximum-number-of-occurrences-of-a-substring", "4sum", "search-a-2d-matrix-ii", "maximum-performance-of-a-team", "plus-one", "triangle-judgement", "remove-duplicate-letters", "replace-employee-id-with-the-unique-identifier", "minimum-operations-to-reduce-an-integer-to-0", "binary-tree-preorder-traversal", "accounts-merge", "alien-dictionary", "max-consecutive-ones", "length-of-last-word", "sort-an-array", "beautiful-towers-ii", "destroying-asteroids", "next-greater-element-i", "group-anagrams", "time-needed-to-inform-all-employees", "smallest-stable-index-ii", "game-play-analysis-iv", "distinct-subsequences", "distinct-subsequences-ii", "online-stock-span", "middle-of-the-linked-list", "count-commas-in-range-ii", "department-top-three-salaries", "patients-with-a-condition", "array-partition", "fruit-into-baskets", "richest-customer-wealth", "rectangle-overlap", "subtree-of-another-tree", "koko-eating-bananas", "path-sum-iii", "image-overlap", "count-non-decreasing-arrays-with-given-digit-sums", "house-robber-iv", "maximum-xor-of-two-numbers-in-an-array", "number-of-recent-calls", "sort-colors", "create-a-dataframe-from-list", "count-binary-substrings", "insert-delete-getrandom-o1", "design-parking-system", "reverse-integer", "delete-and-earn", "power-of-two", "course-schedule", "kids-with-the-greatest-number-of-candies", "time-based-key-value-store", "basic-calculator-ii", "implement-trie-prefix-tree", "design-hit-counter", "two-sum-ii-input-array-is-sorted", "average-time-of-process-per-machine", "maximum-bitwise-xor-after-rearrangement", "find-all-anagrams-in-a-string", "minimum-path-sum", "maximum-points-you-can-obtain-from-cards", "consecutive-numbers", "zigzag-conversion", "ugly-number", "shuffle-the-array", "word-search", "course-schedule-ii", "largest-number", "duplicate-emails", "ransom-note", "lowest-common-ancestor-of-a-binary-tree", "maximum-nesting-depth-of-two-valid-parentheses-strings", "using-a-robot-to-print-the-lexicographically-smallest-string", "restore-ip-addresses", "split-array-largest-sum", "search-insert-position", "max-consecutive-ones-iii", "longest-valid-parentheses", "contiguous-array", "find-all-numbers-disappeared-in-an-array", "squares-of-a-sorted-array", "valid-parenthesis-string"]);
 const STORE="coding-sprint";
-const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,round:rnd(d),slug:r[0],core:!!r[4]}))));
-let st={done:new Set(),core:false,hide:false};
-try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.core=!!o.core;st.hide=!!o.hide}catch(e){}
-function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],core:st.core,hide:st.hide}))}catch(e){}}
+const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,slug:r[0],core:!!r[4],x:!!r[6],ms:MS.has(r[0])}))));
+const VIEWS={all:a=>true,sprint:a=>!a.x,core:a=>a.core,ms:a=>a.ms};
+let st={done:new Set(),view:"all",hide:false};
+try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.view=VIEWS[o.view]?o.view:(o.core?"core":"all");st.hide=!!o.hide}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],view:st.view,hide:st.hide}))}catch(e){}}
+const BY=new Map(ALL.map(a=>[a.slug,a]));const inView=s=>VIEWS[st.view](BY.get(s));
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(a,b)=>b?Math.round(a/b*100):0;
-function cnt(filter){const l=ALL.filter(filter);return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
+function cnt(filter){const l=ALL.filter(a=>VIEWS[st.view](a)&&filter(a));return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
 
 function renderStats(){
   const all=cnt(()=>true),core=cnt(a=>a.core);
-  const rs=Object.keys(ROUNDS).map(k=>{const c=cnt(a=>a.round==k);return `Round ${k} ${c.d}/${c.t}`}).join(" · ");
-  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved · ${rs} · core ★ ${core.d}/${core.t}`;
+  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved`+(core.t&&st.view!=="core"?` · core ★ ${core.d}/${core.t}`:"");
   $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
-  $("dayCards").innerHTML=Object.keys(ROUNDS).map(k=>`<div class="round-group"><span class="rl">Round ${k} · ${esc(ROUNDS[k].title)}</span><div class="days">`+PLAN.filter(d=>rnd(d)==k).map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("")+`</div></div>`).join("");
+  $("dayCards").innerHTML=PLAN.map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.t&&c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.filter(p=>p.probs.some(r=>inView(r[0]))).map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.t&&c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("");
   PLAN.forEach(d=>{const c=cnt(a=>a.day===d.day),el=$("dc"+d.day);if(el)el.textContent=`${c.d} / ${c.t} solved`});
-  PLAN.forEach(d=>d.patterns.forEach((p,i)=>{const el=$(`pc${d.day}-${i}`);if(el){const n=p.probs.filter(r=>st.done.has(r[0])).length;el.textContent=`${n}/${p.probs.length}`}}));
+  PLAN.forEach(d=>d.patterns.forEach((p,i)=>{const el=$(`pc${d.day}-${i}`);if(el){const v=p.probs.filter(r=>inView(r[0]));el.textContent=`${v.filter(r=>st.done.has(r[0])).length}/${v.length}`}}));
 }
 function render(){
-  $("coreOnly").checked=st.core;$("hideDone").checked=st.hide;
-  $("main").innerHTML=PLAN.map((d,i)=>(i===0||rnd(PLAN[i-1])!==rnd(d)?`<div class="round-head" id="round${rnd(d)}"><span class="rn">Round ${rnd(d)}</span><h2>${esc(ROUNDS[rnd(d)].title)}</h2><p>${esc(ROUNDS[rnd(d)].desc)}</p></div>`:"")+`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
+  $("view").value=st.view;$("hideDone").checked=st.hide;
+  $("main").innerHTML=PLAN.map(d=>`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
     d.patterns.map((p,i)=>{
-      const rows=p.probs.filter(r=>(!st.core||r[4])&&(!st.hide||!st.done.has(r[0])));
+      if(!p.probs.some(r=>inView(r[0])))return "";
+      const rows=p.probs.filter(r=>inView(r[0])&&(!st.hide||!st.done.has(r[0])));
       return `<div class="pattern"><h3>${esc(p.name)} <span class="pc" id="pc${d.day}-${i}"></span></h3><p class="idea">${esc(p.idea)}</p>`+
-      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,recent])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${recent?'<span class="recent" title="Also on the latest 30-day list">30d</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
+      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,x])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${x?'<span class="tag" title="Added from LeetCode\'s Microsoft list, last 3 months">MS 3-mo</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
   renderStats();
 }
 document.addEventListener("change",e=>{
@@ -342,12 +439,13 @@ document.addEventListener("change",e=>{
     if(st.hide&&e.target.checked){render();return}
     e.target.closest("li").classList.toggle("done",e.target.checked);renderStats();}
 });
-$("coreOnly").addEventListener("change",e=>{st.core=e.target.checked;save();render()});
+$("view").addEventListener("change",e=>{st.view=e.target.value;save();render()});
 $("hideDone").addEventListener("change",e=>{st.hide=e.target.checked;save();render()});
 $("resetBtn").addEventListener("click",()=>{$("resetConfirm").hidden=false});
 $("resetNo").addEventListener("click",()=>{$("resetConfirm").hidden=true});
 $("resetYes").addEventListener("click",()=>{st.done.clear();save();$("resetConfirm").hidden=true;render()});
 render();
 </script>
+
 </body>
 </html>

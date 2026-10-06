@@ -96,9 +96,9 @@ footer a{color:var(--accent)}
       <span class="go">Open System Design →</span>
     </a>
     <a class="track" href="coding/">
-      <div class="top"><span class="status live">Live</span><span class="facts"><span><b>110</b> problems</span></span></div>
+      <div class="top"><span class="status live">Live</span><span class="facts"><span><b>226</b> problems</span></span></div>
       <h2>Coding</h2>
-      <p>An 11-day sprint: 10 algorithm patterns common in Microsoft interviews, then 60 problems Microsoft has asked recently. Every problem has a hint.</p>
+      <p>A 5-day sprint through 16 algorithm patterns, covering every problem on LeetCode's Microsoft list from the last 3 months. Every problem has a hint.</p>
       <div class="prog">
         <div class="row"><span id="cdLabel">Not started</span><span id="cdPct">0%</span></div>
         <div class="bar"><i id="cdBar"></i></div>
@@ -126,7 +126,7 @@ function showProgress(){
   document.getElementById("sdLabel").textContent=done?done+" of "+TOTAL+" read":"Not started";
   document.getElementById("sdPct").textContent=pct+"%";
   document.getElementById("sdBar").style.width=pct+"%";
-  var CT=110,cd=0;
+  var CT=226,cd=0;
   try{var c=JSON.parse(localStorage.getItem("coding-sprint")||"{}");cd=(c.done||[]).length}catch(e){}
   cd=Math.min(cd,CT);var cp=Math.round(cd/CT*100);
   document.getElementById("cdLabel").textContent=cd?cd+" of "+CT+" solved":"Not started";
