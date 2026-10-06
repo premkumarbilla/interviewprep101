@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>5-Day Coding Sprint · Interview Prep 101</title>
-<meta name="description" content="A 5-day coding interview sprint: 10 algorithm patterns common in Microsoft interviews, 5 LeetCode problems each, with hints and a progress checklist.">
+<title>Coding Sprint · Interview Prep 101</title>
+<meta name="description" content="A coding interview sprint for Microsoft: 110 LeetCode problems across 12 algorithm patterns, including 60 from Microsoft's recent company-tagged list, with hints and a progress checklist.">
 <link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Interview Prep 101">
-<meta property="og:title" content="5-Day Coding Sprint">
-<meta property="og:description" content="10 algorithm patterns common in Microsoft interviews, 5 LeetCode problems each, with hints and a progress checklist.">
+<meta property="og:title" content="Coding Sprint">
+<meta property="og:description" content="110 LeetCode problems across 12 patterns, including 60 recently asked at Microsoft, with hints and a progress checklist.">
 <meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/coding/">
 <meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -53,7 +53,10 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .bar i{display:block;height:100%;width:0;background:var(--done);border-radius:3px;transition:width .25s ease}
 .overall .bar{height:10px;border-radius:5px}
 
-.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.rounds{display:flex;flex-direction:column;gap:14px}
+.round-group{display:flex;flex-direction:column;gap:8px}
+.round-group .rl{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .day-card{display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;color:var(--ink);text-decoration:none;min-width:0}
 .day-card:hover{border-color:var(--accent)}
 .day-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -62,6 +65,10 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .day-card .dc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .day-card.complete .dc{color:var(--done)}
 @media (max-width:760px){.days{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+.round-head{margin-top:16px;display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--accent-soft);border-radius:10px;scroll-margin-top:16px}
+.round-head .rn{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.round-head h2{margin:0;font:700 30px/1.1 var(--cond)}
+.round-head p{margin:0;font-size:14px;color:var(--muted);max-width:75ch}
 
 .tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 .toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
@@ -78,6 +85,7 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .tips div h3{margin:0 0 2px;font:600 15px var(--sans)}
 .tips div p{margin:0;font-size:14px;color:var(--muted)}
 
+#main{display:flex;flex-direction:column;gap:40px}
 section.day{display:flex;flex-direction:column;gap:22px;scroll-margin-top:16px}
 .day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
 .day-head .dn{font:500 13px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
@@ -98,6 +106,7 @@ ol.probs li.done{background:linear-gradient(90deg,var(--done-soft),transparent 7
 li.done .pt a{color:var(--muted)}
 .num{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 .star{color:var(--star);font-size:13px}
+.recent{font:500 11px var(--mono);color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:1px 6px;letter-spacing:.02em}
 .diff{font:500 11px var(--mono);border-radius:3px;padding:2px 7px;white-space:nowrap;letter-spacing:.02em}
 .diff.E{color:var(--easy);background:var(--easy-bg)}.diff.M{color:var(--med);background:var(--med-bg)}.diff.H{color:var(--hard);background:var(--hard-bg)}
 details.hint{grid-column:2/-1;font-size:13.5px;color:var(--muted)}
@@ -117,18 +126,18 @@ footer a{color:var(--accent)}
 <div class="wrap">
   <header>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span><span aria-hidden="true">·</span><a href="../system-design/">System Design</a></nav>
-    <span class="eyebrow">Coding · Online assessment prep</span>
-    <h1>5-Day Coding Sprint</h1>
-    <p class="lede">Ten algorithm patterns that come up often in Microsoft coding interviews, with five LeetCode problems each, ordered from warm-up to stretch. Do two patterns a day. The ★ problems are the core 30. If you're short on time, do those first.</p>
+    <span class="eyebrow">Coding · Microsoft interview prep</span>
+    <h1>Coding Sprint</h1>
+    <p class="lede">Round 1 covers ten algorithm patterns that come up often in Microsoft coding interviews, five LeetCode problems each. Round 2 adds 60 problems Microsoft has asked recently: five more for each pattern, plus intervals, greedy and backtracking. Do two patterns a day. If you're short on time, do the ★ problems first.</p>
     <div class="overall" aria-live="polite">
       <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
       <div class="bar"><i id="ovBar"></i></div>
     </div>
-    <nav class="days" id="dayCards" aria-label="Days"></nav>
+    <nav class="rounds" id="dayCards" aria-label="Days"></nav>
     <div class="tools">
       <label class="toggle" for="coreOnly"><input id="coreOnly" type="checkbox"> Core ★ only</label>
       <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide solved</label>
-      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span></span>
+      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span><span><span class="recent">30d</span> also asked in the latest 30 days</span></span>
       <button class="btn danger" id="resetBtn" type="button">Reset</button>
       <span class="confirm" id="resetConfirm" hidden>Untick all solved problems? <button class="btn danger" id="resetYes" type="button">Yes, reset</button><button class="btn" id="resetNo" type="button">Cancel</button></span>
     </div>
@@ -145,7 +154,7 @@ footer a{color:var(--accent)}
   <main id="main"></main>
 
   <footer>
-    <p>Problem choices reflect patterns widely reported in Microsoft interviews. They are not an official Microsoft list. Links go to LeetCode, and all problems here are free.</p>
+    <p>Round 1 reflects patterns widely reported in Microsoft interviews. Round 2 comes from LeetCode's Microsoft company tag as captured in the community list <a href="https://github.com/snehasishroy/leetcode-companywise-interview-questions/tree/master/microsoft" target="_blank" rel="noopener">snehasishroy/leetcode-companywise-interview-questions</a>, snapshot of 12 July 2026, covering about mid-April to mid-July. SQL problems are left out. None of this is an official Microsoft list. Links go to LeetCode, and all problems here are free.</p>
     <p>Your progress is saved in this browser only. Part of <a href="../">Interview Prep 101</a>.</p>
   </footer>
 </div>
@@ -216,10 +225,92 @@ const PLAN=[
    ["kth-largest-element-in-an-array",215,"Kth Largest Element in an Array","M",1,"A min-heap of size k gives O(n log k). Quickselect averages O(n) and is worth knowing."],
    ["top-k-frequent-elements",347,"Top K Frequent Elements","M",1,"Count with a map, then keep a size-k heap by frequency. Or use bucket sort by frequency for O(n)."],
    ["merge-k-sorted-lists",23,"Merge k Sorted Lists","H",1,"Min-heap of the current head from each list. Pop the smallest, append it, and push its next node. O(N log k)."],
-   ["find-median-from-data-stream",295,"Find Median from Data Stream","H",0,"Two heaps: a max-heap for the lower half and a min-heap for the upper half. Rebalance so their sizes differ by at most 1."]]}]}
+   ["find-median-from-data-stream",295,"Find Median from Data Stream","H",0,"Two heaps: a max-heap for the lower half and a min-heap for the upper half. Rebalance so their sizes differ by at most 1."]]}]},
+ {day:6,round:2,title:"Arrays and pointers, round 2",patterns:[
+  {name:"Arrays & Hashing",idea:"Round 2 leans on in-place tricks: reuse the input as scratch space, and use prefix sums with a map of first-seen indices.",probs:[
+   ["next-permutation",31,"Next Permutation","M",1,"From the right, find the first i with nums[i] < nums[i+1]. Swap it with the rightmost element larger than it, then reverse everything after i. If there's no such i, reverse the whole array.",1],
+   ["maximum-subarray",53,"Maximum Subarray","M",1,"Kadane's algorithm: cur = max(x, cur + x) and best = max(best, cur). Be ready to explain why dropping a negative running sum is safe.",1],
+   ["rotate-image",48,"Rotate Image","M",1,"Transpose in place (swap [i][j] with [j][i] for j > i), then reverse each row. That's a 90° clockwise turn.",1],
+   ["set-matrix-zeroes",73,"Set Matrix Zeroes","M",0,"For O(1) space, use the first row and column as markers. Record separately whether row 0 and column 0 themselves need zeroing, and clear them last.",1],
+   ["contiguous-array",525,"Contiguous Array","M",0,"Treat 0 as −1, so equal 0s and 1s means a sum of 0. Store the first index of each prefix sum, seeded with {0: −1}, and measure the gap when a sum repeats.",0]]},
+  {name:"Two Pointers",idea:"Beyond sorted pairs: fill arrays from the back, and use fast and slow pointers on an array treated as a linked list.",probs:[
+   ["merge-sorted-array",88,"Merge Sorted Array","E",1,"Fill from the back. Write the larger of the two remaining tails at position m + n − 1 and move down, then copy whatever is left of nums2.",0],
+   ["4sum",18,"4Sum","M",1,"Sort, fix two indices with nested loops, then two-pointer the rest. Skip duplicates at every level, and watch for overflow if your ints are 32-bit.",0],
+   ["find-the-duplicate-number",287,"Find the Duplicate Number","M",1,"Treat i → nums[i] as a linked list; the duplicate is where the cycle starts. Run Floyd's slow and fast pointers to meet, then restart one from 0 and step both by one.",0],
+   ["partition-array-according-to-given-pivot",2161,"Partition Array According to Given Pivot","M",0,"Relative order must stay the same, so don't swap. Write the smaller values, then the pivots, then the larger values, in separate passes or with front and back write pointers.",0],
+   ["heaters",475,"Heaters","M",0,"Sort both arrays. For each house, find the nearest heater with binary search or a pointer that only moves forward. The answer is the largest of those distances.",0]]}]},
+ {day:7,round:2,title:"Windows and stacks, round 2",patterns:[
+  {name:"Sliding Window",idea:"Harder windows: a deque for the window maximum, a cost formula to decide when to shrink, and atMost(k) − atMost(k − 1) for 'exactly k'.",probs:[
+   ["maximum-average-subarray-i",643,"Maximum Average Subarray I","E",0,"Fixed window of size k. Add the new element, subtract the one leaving, track the best sum and divide by k at the end.",0],
+   ["permutation-in-string",567,"Permutation in String","M",1,"A window of length s1 sliding over s2, comparing 26-letter counts. Return true on the first match.",1],
+   ["frequency-of-the-most-frequent-element",1838,"Frequency of the Most Frequent Element","M",1,"Sort. Raising window [l, r] to nums[r] costs nums[r] × length − windowSum. Shrink from the left while that cost is more than k.",0],
+   ["sliding-window-maximum",239,"Sliding Window Maximum","H",1,"Monotonic deque of indices with decreasing values. Pop smaller values off the back before pushing, drop the front once it leaves the window, and read the max from the front.",1],
+   ["subarrays-with-k-different-integers",992,"Subarrays with K Different Integers","H",0,"exactly(k) = atMost(k) − atMost(k − 1). atMost is a normal window with a count map, and each right edge adds right − left + 1 subarrays.",0]]},
+  {name:"Stack",idea:"Monotonic stacks answer 'next smaller or greater' and 'how far can this bar stretch'. A stack of saved state handles nested expressions.",probs:[
+   ["final-prices-with-a-special-discount-in-a-shop",1475,"Final Prices With a Special Discount in a Shop","E",0,"Find the next smaller-or-equal price to the right. Keep an increasing stack of indices, and when a price ≤ the top arrives, pop and apply the discount.",0],
+   ["next-greater-element-ii",503,"Next Greater Element II","M",1,"The array is circular, so loop i from 0 to 2n − 1 using i % n with a decreasing stack of indices. Only push indices on the first pass.",0],
+   ["largest-rectangle-in-histogram",84,"Largest Rectangle in Histogram","H",1,"Increasing stack of indices. When a shorter bar arrives, pop: the popped bar's rectangle spans from the new top + 1 to i − 1. Add a 0-height bar at the end to flush the stack.",0],
+   ["basic-calculator",224,"Basic Calculator","H",1,"Track result, the current number and sign. On '(', push result and sign, then reset them. On ')', finish the number and combine: result = pushedResult + pushedSign × result.",0],
+   ["longest-valid-parentheses",32,"Longest Valid Parentheses","H",0,"Stack of indices seeded with −1. Push on '('. On ')', pop; if the stack is now empty push i as the new base, otherwise the valid length is i − top.",0]]}]},
+ {day:8,round:2,title:"Binary search and DP, round 2",patterns:[
+  {name:"Binary Search",idea:"Most of these search the answer, not the array: guess a value, check it greedily, and move toward the smallest guess that works.",probs:[
+   ["single-element-in-a-sorted-array",540,"Single Element in a Sorted Array","M",1,"Before the single element, pairs start at even indices; after it, at odd ones. Keep mid even: if nums[mid] == nums[mid + 1], go right, otherwise go left.",0],
+   ["capacity-to-ship-packages-within-d-days",1011,"Capacity To Ship Packages Within D Days","M",1,"Search capacity between max(weights) and sum(weights). For each guess, greedily count the days needed, and find the smallest capacity that fits.",1],
+   ["find-the-smallest-divisor-given-a-threshold",1283,"Find the Smallest Divisor Given a Threshold","M",0,"Same shape as Koko: search divisors from 1 to max(nums), summing ceil(n / d) for each guess.",0],
+   ["split-array-largest-sum",410,"Split Array Largest Sum","H",1,"Search the answer between max(nums) and sum(nums). For a guess, start a new piece whenever the running sum would go over it. The guess works if you need k pieces or fewer.",0],
+   ["median-of-two-sorted-arrays",4,"Median of Two Sorted Arrays","H",0,"Binary search a cut in the shorter array so the two left parts hold half the elements. The cut is right when maxLeftA ≤ minRightB and maxLeftB ≤ minRightA. O(log min(m, n)).",0]]},
+  {name:"Dynamic Programming",idea:"Round 2 moves to 2D tables: grids, two strings, and knapsack counting. Say what dp[i][j] means before writing the recurrence.",probs:[
+   ["unique-paths",62,"Unique Paths","M",1,"dp[r][c] = dp[r−1][c] + dp[r][c−1], with the first row and column all 1. A single row of length n is enough memory.",1],
+   ["longest-increasing-subsequence",300,"Longest Increasing Subsequence","M",1,"O(n²): dp[i] = 1 + max dp[j] for j < i with nums[j] < nums[i]. O(n log n): keep tails[k] as the smallest tail of an increasing run of length k + 1 and binary search each number's place.",0],
+   ["coin-change-ii",518,"Coin Change II","M",0,"You're counting combinations, not orderings, so loop over coins on the outside and amounts on the inside: dp[a] += dp[a − coin], with dp[0] = 1.",0],
+   ["edit-distance",72,"Edit Distance","M",1,"dp[i][j] = edits to turn word1[:i] into word2[:j]. If the letters match, take dp[i−1][j−1]; otherwise 1 + the minimum of insert, delete and replace.",0],
+   ["regular-expression-matching",10,"Regular Expression Matching","H",0,"dp[i][j] = s[:i] matches p[:j]. For '*', either use zero copies of the previous token (dp[i][j−2]) or, if it matches s[i−1], consume one character (dp[i−1][j]).",0]]}]},
+ {day:9,round:2,title:"Trees and graphs, round 2",patterns:[
+  {name:"Trees (DFS & BFS)",idea:"The DFS returns one thing to its parent while updating a global answer with another. Diameter and max path sum are the classic examples.",probs:[
+   ["diameter-of-binary-tree",543,"Diameter of Binary Tree","E",1,"DFS returns height. At each node, left height + right height is a candidate diameter; keep a running max.",1],
+   ["kth-smallest-element-in-a-bst",230,"Kth Smallest Element in a BST","M",1,"In-order traversal visits a BST in sorted order. Stop at the kth node; an iterative stack makes stopping early easy.",1],
+   ["construct-binary-tree-from-preorder-and-inorder-traversal",105,"Construct Binary Tree from Preorder and Inorder Traversal","M",1,"The next preorder value is the root, and its position in inorder splits the left and right subtrees. Use a map of value → inorder index and a moving preorder pointer.",0],
+   ["all-nodes-distance-k-in-binary-tree",863,"All Nodes Distance K in Binary Tree","M",0,"Record each node's parent so the tree becomes an undirected graph, then BFS from the target for k levels.",0],
+   ["binary-tree-maximum-path-sum",124,"Binary Tree Maximum Path Sum","H",0,"DFS returns the best downward path from a node, ignoring negative children (max with 0). At each node, node + left + right is a candidate for the answer.",0]]},
+  {name:"Graphs",idea:"Add union-find for connectivity questions, and rerooting when you need an answer for every possible root.",probs:[
+   ["surrounded-regions",130,"Surrounded Regions","M",1,"Flip the question: flood-fill from every border 'O' and mark it safe. Then every 'O' that isn't safe becomes 'X'.",0],
+   ["redundant-connection",684,"Redundant Connection","M",1,"Union-find. Process edges in order; the first edge whose ends already share a root is the answer.",0],
+   ["accounts-merge",721,"Accounts Merge","M",1,"Union-find over emails. Union every email in an account with its first email, then group emails by root, sort each group and attach the name.",0],
+   ["making-a-large-island",827,"Making A Large Island","H",0,"Label each island with an id and record its size. For each 0, add 1 to the sizes of its distinct neighboring islands. Don't forget a grid that is all land.",0],
+   ["minimum-edge-reversals-so-every-node-is-reachable",2858,"Minimum Edge Reversals So Every Node Is Reachable","H",0,"Store each edge both ways: cost 0 forward, 1 reversed. DFS from node 0 to get its answer, then reroot: moving the root from u to v adds 1 if the edge was u→v and subtracts 1 if it was v→u.",0]]}]},
+ {day:10,round:2,title:"Linked lists and heaps, round 2",patterns:[
+  {name:"Linked List",idea:"Round 2 combines the basics: find the middle, reverse a section, and splice it back. LFU Cache extends LRU Cache with one list per frequency.",probs:[
+   ["linked-list-cycle",141,"Linked List Cycle","E",1,"Slow and fast pointers. If they meet there's a cycle; if fast reaches the end there isn't.",1],
+   ["reverse-linked-list-ii",92,"Reverse Linked List II","M",1,"Dummy head. Walk to the node before position left, then repeatedly move the next node to the front of the sublist, right − left times.",1],
+   ["reorder-list",143,"Reorder List","M",1,"Three steps: find the middle with slow and fast pointers, reverse the second half, then merge the two halves alternately.",0],
+   ["reverse-nodes-in-k-group",25,"Reverse Nodes in k-Group","H",0,"Check that k nodes remain, reverse exactly those k, connect the previous group's tail to the new head, and continue. A short final group stays as it is.",1],
+   ["lfu-cache",460,"LFU Cache","H",0,"Map of key → node, map of frequency → doubly linked list (most recent first), and the current minimum frequency. On access, move the node to the next frequency's list; evict from the tail of the minimum-frequency list.",0]]},
+  {name:"Heap / Priority Queue",idea:"Heaps for scheduling: sort by start, push what has become available, and pop the most urgent item. A monotonic deque can replace a heap for sliding maximums.",probs:[
+   ["sort-characters-by-frequency",451,"Sort Characters By Frequency","M",1,"Count characters, then order them by count with a max-heap or bucket sort, writing each character count times.",1],
+   ["task-scheduler",621,"Task Scheduler","M",1,"Formula: (maxCount − 1) × (n + 1) + the number of tasks with maxCount, but never less than the total task count. Or simulate with a max-heap and a cooldown queue.",0],
+   ["maximum-number-of-events-that-can-be-attended",1353,"Maximum Number of Events That Can Be Attended","M",1,"Sort by start day. Sweep the days: push the end days of events starting today onto a min-heap, drop expired ones, and attend the one that ends soonest.",0],
+   ["find-k-pairs-with-smallest-sums",373,"Find K Pairs with Smallest Sums","M",0,"Push (nums1[i] + nums2[0], i, 0) for the first k values of i. Pop the smallest, record it, and push (i, j + 1). Repeat k times.",0],
+   ["jump-game-vi",1696,"Jump Game VI","M",0,"dp[i] = nums[i] + the max dp over the previous k indices. Keep that max in a monotonic deque, as in Sliding Window Maximum, for O(n).",0]]}]},
+ {day:11,round:2,title:"New patterns: intervals, greedy and backtracking",patterns:[
+  {name:"Intervals & Greedy",idea:"Sort intervals by start or end and sweep once. Greedy works when you can argue the local choice, like the earliest-ending option, never hurts.",probs:[
+   ["merge-intervals",56,"Merge Intervals","M",1,"Sort by start. If the next interval starts at or before the last merged end, extend that end; otherwise start a new interval.",1],
+   ["partition-labels",763,"Partition Labels","M",1,"Record each letter's last index. Sweep, stretching the current part's end to the last index of each letter you see, and cut when i reaches that end.",1],
+   ["gas-station",134,"Gas Station","M",1,"If total gas < total cost, return −1. Otherwise sweep with a running tank, and whenever it goes negative, move the start to i + 1 and reset the tank.",1],
+   ["remove-covered-intervals",1288,"Remove Covered Intervals","M",0,"Sort by start ascending and end descending. An interval is covered exactly when its end is ≤ the largest end seen so far.",1],
+   ["jump-game-ii",45,"Jump Game II","M",0,"BFS by levels in one pass: track the farthest reach inside the current jump's range, and when i reaches that range's end, take a jump and extend the range.",0]]},
+  {name:"Backtracking",idea:"Build a candidate one choice at a time, recurse, then undo the choice. Prune early, and sort first when you need to skip duplicates.",probs:[
+   ["subsets",78,"Subsets","M",1,"At each index, include the number or don't. Or build iteratively: for each number, add it to a copy of every subset so far.",0],
+   ["generate-parentheses",22,"Generate Parentheses","M",1,"Add '(' while open < n and ')' while close < open. Every string that reaches length 2n is valid.",0],
+   ["combination-sum",39,"Combination Sum","M",1,"Recurse with a start index so the same combination isn't built in a different order. Reuse the current index, since numbers can repeat, and stop when the remaining target goes negative.",0],
+   ["letter-combinations-of-a-phone-number",17,"Letter Combinations of a Phone Number","M",0,"Map each digit to its letters and recurse one digit at a time, appending each letter. Return an empty list for an empty input.",0],
+   ["n-queens",51,"N-Queens","H",0,"Place one queen per row. Track used columns and both diagonals (r − c and r + c) in sets so each check is O(1).",0]]}]}
 ];
+const ROUNDS={
+ 1:{title:"Core patterns",desc:"Ten patterns that cover most coding interview questions, five problems each, from warm-up to stretch."},
+ 2:{title:"Microsoft, last 3 months",desc:"60 problems from LeetCode's Microsoft company tag for about mid-April to mid-July 2026, with none repeated from Round 1. Days 6–10 go deeper on the same ten patterns, and Day 11 adds intervals, greedy and backtracking. Problems marked 30d were also on the most recent 30-day list."}};
+const rnd=d=>d.round||1;
 const STORE="coding-sprint";
-const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,slug:r[0],core:!!r[4]}))));
+const ALL=[];PLAN.forEach(d=>d.patterns.forEach(p=>p.probs.forEach(r=>ALL.push({day:d.day,round:rnd(d),slug:r[0],core:!!r[4]}))));
 let st={done:new Set(),core:false,hide:false};
 try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.core=!!o.core;st.hide=!!o.hide}catch(e){}
 function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],core:st.core,hide:st.hide}))}catch(e){}}
@@ -230,19 +321,20 @@ function cnt(filter){const l=ALL.filter(filter);return {d:l.filter(a=>st.done.ha
 
 function renderStats(){
   const all=cnt(()=>true),core=cnt(a=>a.core);
-  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved · core ★ ${core.d}/${core.t}`;
+  const rs=Object.keys(ROUNDS).map(k=>{const c=cnt(a=>a.round==k);return `Round ${k} ${c.d}/${c.t}`}).join(" · ");
+  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved · ${rs} · core ★ ${core.d}/${core.t}`;
   $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
-  $("dayCards").innerHTML=PLAN.map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("");
+  $("dayCards").innerHTML=Object.keys(ROUNDS).map(k=>`<div class="round-group"><span class="rl">Round ${k} · ${esc(ROUNDS[k].title)}</span><div class="days">`+PLAN.filter(d=>rnd(d)==k).map(d=>{const c=cnt(a=>a.day===d.day);return `<a class="day-card ${c.d===c.t?"complete":""}" href="#day${d.day}"><span class="dn">Day ${d.day}</span><span class="dt">${d.patterns.map(p=>esc(p.name)).join(" + ")}</span><span class="dc">${c.d===c.t?"✓ ":""}${c.d} / ${c.t} solved</span><span class="bar"><i style="width:${pct(c.d,c.t)}%"></i></span></a>`}).join("")+`</div></div>`).join("");
   PLAN.forEach(d=>{const c=cnt(a=>a.day===d.day),el=$("dc"+d.day);if(el)el.textContent=`${c.d} / ${c.t} solved`});
   PLAN.forEach(d=>d.patterns.forEach((p,i)=>{const el=$(`pc${d.day}-${i}`);if(el){const n=p.probs.filter(r=>st.done.has(r[0])).length;el.textContent=`${n}/${p.probs.length}`}}));
 }
 function render(){
   $("coreOnly").checked=st.core;$("hideDone").checked=st.hide;
-  $("main").innerHTML=PLAN.map(d=>`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
+  $("main").innerHTML=PLAN.map((d,i)=>(i===0||rnd(PLAN[i-1])!==rnd(d)?`<div class="round-head" id="round${rnd(d)}"><span class="rn">Round ${rnd(d)}</span><h2>${esc(ROUNDS[rnd(d)].title)}</h2><p>${esc(ROUNDS[rnd(d)].desc)}</p></div>`:"")+`<section class="day" id="day${d.day}"><div class="day-head"><span class="dn">Day ${d.day}</span><h2>${esc(d.title)}</h2><span class="dc" id="dc${d.day}"></span></div>`+
     d.patterns.map((p,i)=>{
       const rows=p.probs.filter(r=>(!st.core||r[4])&&(!st.hide||!st.done.has(r[0])));
       return `<div class="pattern"><h3>${esc(p.name)} <span class="pc" id="pc${d.day}-${i}"></span></h3><p class="idea">${esc(p.idea)}</p>`+
-      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
+      (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,recent])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${recent?'<span class="recent" title="Also on the latest 30-day list">30d</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</div>`}).join("")+`</section>`).join("");
   renderStats();
 }
 document.addEventListener("change",e=>{
