@@ -69,6 +69,17 @@ h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01
 .btn:hover{border-color:var(--accent);color:var(--accent)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .btn.danger{color:var(--danger)}
+.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:6px;font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:5px 11px;cursor:pointer}
+.lvl:hover:not(:disabled){border-color:var(--accent)}
+.lvl:disabled{opacity:.45;cursor:default}
+.lvl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.lvl .cc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.lvl.E[aria-pressed="true"]{color:var(--easy);background:var(--easy-bg);border-color:var(--easy)}
+.lvl.M[aria-pressed="true"]{color:var(--med);background:var(--med-bg);border-color:var(--med)}
+.lvl.H[aria-pressed="true"]{color:var(--hard);background:var(--hard-bg);border-color:var(--hard)}
+.lvl.A[aria-pressed="true"]{color:var(--surface);background:var(--accent);border-color:var(--accent)}
+.lvl[aria-pressed="true"] .cc{color:inherit;opacity:.85}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);align-items:center}
 .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
 
@@ -121,16 +132,17 @@ footer a{color:var(--accent)}
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Coding</span><span aria-hidden="true">·</span><a href="../system-design/">System Design</a></nav>
     <span class="eyebrow">Coding · Online assessment prep</span>
     <h1>Coding Sprint</h1>
-    <p class="lede">Sixteen patterns that come up in Microsoft coding interviews, now covering all 212 problems on LeetCode's Microsoft list from the last three months, plus the original sprint picks. Pick a concept to focus on it, or switch to the original 50 or the core ★ 30 when you're short on time. Problems tagged MS 3-mo are the new additions, listed easy to hard within each pattern.</p>
+    <p class="lede">Sixteen patterns that come up in Microsoft coding interviews, now covering all 212 problems on LeetCode's Microsoft list from the last three months, plus the original sprint picks. Pick a concept or a difficulty to focus on, or switch to the original 50 or the core ★ 30 when you're short on time. Problems tagged MS 3-mo are the new additions, listed easy to hard within each pattern.</p>
     <div class="overall" aria-live="polite">
       <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
       <div class="bar"><i id="ovBar"></i></div>
     </div>
     <nav class="concepts" id="concepts" aria-label="Concepts"></nav>
+    <div class="levels" id="levels" role="group" aria-label="Difficulty"></div>
     <div class="tools">
       <label class="toggle" for="view">Show <select id="view" class="sel"><option value="all">Everything (226)</option><option value="sprint">Original sprint (50)</option><option value="core">Core ★ (30)</option><option value="ms">Microsoft, last 3 months (212)</option></select></label>
       <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide solved</label>
-      <span class="legend"><span class="diff E">Easy</span><span class="diff M">Medium</span><span class="diff H">Hard</span><span><span class="star">★</span> core</span><span><span class="tag">MS 3-mo</span> added</span></span>
+      <span class="legend"><span><span class="star">★</span> core</span><span><span class="tag">MS 3-mo</span> added</span></span>
       <button class="btn danger" id="resetBtn" type="button">Reset</button>
       <span class="confirm" id="resetConfirm" hidden>Untick all solved problems? <button class="btn danger" id="resetYes" type="button">Yes, reset</button><button class="btn" id="resetNo" type="button">Cancel</button></span>
     </div>
@@ -401,22 +413,25 @@ const MS=new Set(["two-sum", "add-two-numbers", "longest-substring-without-repea
 const STORE="coding-sprint";
 const pid=n=>n.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 PATTERNS.forEach(p=>p.id=pid(p.name));
-const ALL=[];PATTERNS.forEach(p=>p.probs.forEach(r=>ALL.push({pat:p.id,slug:r[0],core:!!r[4],x:!!r[6],ms:MS.has(r[0])})));
+const ALL=[];PATTERNS.forEach(p=>p.probs.forEach(r=>ALL.push({pat:p.id,slug:r[0],df:r[3],core:!!r[4],x:!!r[6],ms:MS.has(r[0])})));
 const VIEWS={all:a=>true,sprint:a=>!a.x,core:a=>a.core,ms:a=>a.ms};
-let st={done:new Set(),view:"all",hide:false,concept:"all"};
-try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.view=VIEWS[o.view]?o.view:(o.core?"core":"all");st.hide=!!o.hide;st.concept=PATTERNS.some(p=>p.id===o.concept)?o.concept:"all"}catch(e){}
-function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],view:st.view,hide:st.hide,concept:st.concept}))}catch(e){}}
-const BY=new Map(ALL.map(a=>[a.slug,a]));const inView=s=>VIEWS[st.view](BY.get(s));
+let st={done:new Set(),view:"all",hide:false,concept:"all",diff:new Set()};
+try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.view=VIEWS[o.view]?o.view:(o.core?"core":"all");st.hide=!!o.hide;st.diff=new Set((o.diff||[]).filter(d=>"EMH".includes(d)));st.concept=PATTERNS.some(p=>p.id===o.concept)?o.concept:"all"}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],view:st.view,hide:st.hide,concept:st.concept,diff:[...st.diff]}))}catch(e){}}
+const BY=new Map(ALL.map(a=>[a.slug,a]));const shown=a=>VIEWS[st.view](a)&&(!st.diff.size||st.diff.has(a.df));const inView=s=>shown(BY.get(s));
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(a,b)=>b?Math.round(a/b*100):0;
-function cnt(filter){const l=ALL.filter(a=>VIEWS[st.view](a)&&filter(a));return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
+function cnt(filter,f=shown){const l=ALL.filter(a=>f(a)&&filter(a));return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
 const chip=(id,label,c)=>`<button type="button" class="chip ${c.t&&c.d===c.t?"complete":""}" data-c="${id}" aria-pressed="${st.concept===id}">${esc(label)} <span class="cc">${c.t&&c.d===c.t?"✓ ":""}${c.d}/${c.t}</span></button>`;
 
 function renderStats(){
   const all=cnt(()=>true),core=cnt(a=>a.core);
   $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} solved`+(core.t&&st.view!=="core"?` · core ★ ${core.d}/${core.t}`:"");
   $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
+  const inC=a=>VIEWS[st.view](a)&&(st.concept==="all"||a.pat===st.concept);
+  const lvl=(k,label,c,on)=>`<button type="button" class="lvl ${k}" data-d="${k}" aria-pressed="${on}" ${c.t||on?"":"disabled"}>${label} <span class="cc">${c.d}/${c.t}</span></button>`;
+  $("levels").innerHTML=`<span>Difficulty</span>`+lvl("A","All levels",cnt(()=>true,inC),!st.diff.size)+[["E","Easy"],["M","Medium"],["H","Hard"]].map(([k,l])=>lvl(k,l,cnt(a=>a.df===k,inC),st.diff.has(k))).join("");
   $("concepts").innerHTML=chip("all","All concepts",all)+PATTERNS.map(p=>{const c=cnt(a=>a.pat===p.id);return c.t?chip(p.id,p.name,c):""}).join("");
   PATTERNS.forEach(p=>{const el=$("dc-"+p.id);if(el){const c=cnt(a=>a.pat===p.id);el.textContent=`${c.d} / ${c.t} solved`}});
 }
@@ -427,7 +442,7 @@ function render(){
     if(!p.probs.some(r=>inView(r[0])))return "";
     const rows=p.probs.filter(r=>inView(r[0])&&(!st.hide||!st.done.has(r[0])));
     return `<section class="concept pattern" id="c-${p.id}"><div class="c-head"><h2>${esc(p.name)}</h2><span class="dc" id="dc-${p.id}"></span></div><p class="idea">${esc(p.idea)}</p>`+
-    (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,x])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${x?'<span class="tag" title="Added from LeetCode\'s Microsoft list, last 3 months">MS 3-mo</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</section>`}).join("")||`<p class="empty">Nothing in this view for this concept.</p>`;
+    (rows.length?`<ol class="probs">`+rows.map(([slug,num,t,df,core,hint,x])=>{const done=st.done.has(slug);return `<li class="${done?"done":""}"><input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(t)} as solved"><span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a>${core?'<span class="star" title="Core problem">★</span>':""}${x?'<span class="tag" title="Added from LeetCode\'s Microsoft list, last 3 months">MS 3-mo</span>':""}</span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Show hint</summary><p>${esc(hint)}</p></details></li>`}).join("")+`</ol>`:`<p class="empty">All solved here. Nice work.</p>`)+`</section>`}).join("")||`<p class="empty">No problems match these filters.</p>`;
   renderStats();
 }
 document.addEventListener("change",e=>{
@@ -436,7 +451,8 @@ document.addEventListener("change",e=>{
     e.target.closest("li").classList.toggle("done",e.target.checked);renderStats();}
 });
 $("concepts").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;st.concept=b.dataset.c;save();render();$("main").scrollIntoView({block:"start"})});
-$("view").addEventListener("change",e=>{st.view=e.target.value;if(st.concept!=="all"&&!ALL.some(a=>a.pat===st.concept&&VIEWS[st.view](a)))st.concept="all";save();render()});
+$("view").addEventListener("change",e=>{st.view=e.target.value;if(st.concept!=="all"&&!ALL.some(a=>a.pat===st.concept&&shown(a)))st.concept="all";save();render()});
+$("levels").addEventListener("click",e=>{const b=e.target.closest(".lvl");if(!b)return;const k=b.dataset.d;if(k==="A")st.diff.clear();else{st.diff.has(k)?st.diff.delete(k):st.diff.add(k);if(st.diff.size===3)st.diff.clear()}save();render()});
 $("hideDone").addEventListener("change",e=>{st.hide=e.target.checked;save();render()});
 $("resetBtn").addEventListener("click",()=>{$("resetConfirm").hidden=false});
 $("resetNo").addEventListener("click",()=>{$("resetConfirm").hidden=true});
