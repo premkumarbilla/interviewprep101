@@ -9,6 +9,8 @@ Live site: https://premkumarbilla.github.io/interviewprep101/
 | `index.html` | Home page, with links to each track and your System Design progress |
 | `system-design/index.html` | System Design Interview Reading Tracker (Alex Xu, Vol. 1 and 2, 457 references) |
 | `coding/index.html` | Coding Sprint: 226 LeetCode problems grouped by 16 concepts, including LeetCode's Microsoft list from the last 3 months |
+| `practice/index.html` | System Design Practice Questions: 8 reported Microsoft questions with requirements and reference solutions |
+| `practice/requirements.pdf`, `practice/solutions.pdf` | Downloadable PDFs of the same content |
 | `og-image.png`, `system-design/og-image.png` | Preview images shown when a link is shared |
 | `sitemap.xml` | Lists the pages for search engines. Submit it in Google Search Console. |
 
