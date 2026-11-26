@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Interview Prep 101">
 <meta property="og:title" content="Interview Prep 101">
-<meta property="og:description" content="Free trackers for software engineering interview prep. System design and a Microsoft-focused coding sprint.">
+<meta property="og:description" content="Free trackers for software engineering interview prep. System design, a Microsoft-focused coding sprint and Figma coding prep.">
 <meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/">
 <meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Interview Prep 101: System Design and Coding trackers">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Interview Prep 101">
-<meta name="twitter:description" content="Free trackers for software engineering interview prep. System design and a Microsoft-focused coding sprint.">
+<meta name="twitter:description" content="Free trackers for software engineering interview prep. System design, a Microsoft-focused coding sprint and Figma coding prep.">
 <meta name="twitter:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Interview Prep 101","url":"https://premkumarbilla.github.io/interviewprep101/","description":"Free, no-sign-up trackers for software engineering interview prep."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,6 +111,16 @@ footer a{color:var(--accent)}
       <p>Eight system design questions reported from Microsoft interviews, each with requirements and a reference solution. Download them as PDFs.</p>
       <span class="go">Open Practice Questions →</span>
     </a>
+    <a class="track" href="figma/">
+      <div class="top"><span class="status live">New</span><span class="facts"><span><b>34</b> items</span></span></div>
+      <h2>Figma Coding Prep</h2>
+      <p>A 13-day plan for Figma's product-style coding round: undo/redo, layer trees, canvas geometry and permission graphs, with Figma-style prompts and LeetCode practice.</p>
+      <div class="prog">
+        <div class="row"><span id="fgLabel">Not started</span><span id="fgPct">0%</span></div>
+        <div class="bar"><i id="fgBar"></i></div>
+      </div>
+      <span class="go">Open Figma Prep →</span>
+    </a>
   </section>
 
   <section class="how" aria-label="How it works">
@@ -138,6 +148,12 @@ function showProgress(){
   document.getElementById("cdLabel").textContent=cd?cd+" of "+CT+" solved":"Not started";
   document.getElementById("cdPct").textContent=cp+"%";
   document.getElementById("cdBar").style.width=cp+"%";
+  var FT=34,fd=0;
+  try{var f=JSON.parse(localStorage.getItem("figma-prep")||"{}");fd=(f.done||[]).length}catch(e){}
+  fd=Math.min(fd,FT);var fp=Math.round(fd/FT*100);
+  document.getElementById("fgLabel").textContent=fd?fd+" of "+FT+" done":"Not started";
+  document.getElementById("fgPct").textContent=fp+"%";
+  document.getElementById("fgBar").style.width=fp+"%";
 }
 showProgress();
 window.addEventListener("pageshow",showProgress);

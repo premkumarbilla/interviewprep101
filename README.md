@@ -11,6 +11,7 @@ Live site: https://premkumarbilla.github.io/interviewprep101/
 | `coding/index.html` | Coding Sprint: 226 LeetCode problems grouped by 16 concepts, including LeetCode's Microsoft list from the last 3 months |
 | `practice/index.html` | System Design Practice Questions: 8 reported Microsoft questions with requirements and reference solutions |
 | `practice/requirements.pdf`, `practice/solutions.pdf` | Downloadable PDFs of the same content |
+| `figma/index.html` | Figma Coding Prep: a 13-day plan and 34 practice items (Figma-style prompts and LeetCode problems) grouped by pattern |
 | `og-image.png`, `system-design/og-image.png` | Preview images shown when a link is shared |
 | `sitemap.xml` | Lists the pages for search engines. Submit it in Google Search Console. |
 
@@ -32,9 +33,15 @@ The problems are the `PATTERNS` array (one entry per concept) in the `<script>` 
 
 The Microsoft problems come from LeetCode's Microsoft company list for the last 3 months, captured October 2026.
 
+## Updating Figma Coding Prep
+
+The content is the `CATS` array in the `<script>` block in `figma/index.html`. Each category has a `pattern` note, `figma` prompts (`[slug, title, description, stages]`) and `lc` problems (`[slug, number, title, difficulty, hint]`). Progress is stored by slug under the key `figma-prep`. When the number of items changes, update `FT` and the count on the card in `index.html`.
+
+The problem types are summarized from public candidate reports (Glassdoor, PracHub, 1point3acres) through November 2026. The Figma-style prompts are written for this site and are not Figma's actual questions.
+
 ## How progress is stored
 
-Progress is saved in `localStorage` under the key `sdi-tracker`. It is never sent anywhere. It stays with one browser on one device, and visitors can move it with Export and Import on the tracker.
+Progress is saved in `localStorage` under the keys `sdi-tracker`, `coding-sprint` and `figma-prep`. It is never sent anywhere. It stays with one browser on one device, and visitors can move it with Export and Import on the tracker.
 
 ## Credit
 

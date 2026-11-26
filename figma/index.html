@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figma Coding Prep · Interview Prep 101</title>
+<meta name="description" content="A 13-day prep plan for Figma's coding round: product-style problems grouped by pattern (undo/redo, layer trees, canvas geometry, permission graphs), with Figma-style practice prompts, LeetCode practice and a progress checklist.">
+<link rel="canonical" href="https://premkumarbilla.github.io/interviewprep101/figma/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#2556C4">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Interview Prep 101">
+<meta property="og:title" content="Figma Coding Prep">
+<meta property="og:description" content="A 13-day plan for Figma's coding round, with problems grouped by pattern and a progress checklist.">
+<meta property="og:url" content="https://premkumarbilla.github.io/interviewprep101/figma/">
+<meta property="og:image" content="https://premkumarbilla.github.io/interviewprep101/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#15202B; --muted:#5A6775; --rule:#DCE2E9;
+  --accent:#2556C4; --accent-soft:#E6EDFB; --tag:#EEF1F5; --done:#1F8A5B; --done-soft:#E3F3EB; --track:#E4E9EF;
+  --easy:#1F8A5B; --easy-bg:#E3F3EB; --med:#9A6700; --med-bg:#FBF0D6; --hard:#B42318; --hard-bg:#FCE7E5; --danger:#B42318;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
+    --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --done-soft:#12291F; --track:#222C37;
+    --easy:#4CC38A; --easy-bg:#12291F; --med:#E2B64A; --med-bg:#2E2610; --hard:#F97066; --hard-bg:#3A1714; --danger:#F97066;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0E1319; --surface:#151C24; --ink:#E4E9EF; --muted:#94A1AE; --rule:#26303B;
+  --accent:#86A8FF; --accent-soft:#1C2940; --tag:#1D2630; --done:#4CC38A; --done-soft:#12291F; --track:#222C37;
+  --easy:#4CC38A; --easy-bg:#12291F; --med:#E2B64A; --med-bg:#2E2610; --hard:#F97066; --hard-bg:#3A1714; --danger:#F97066;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+header{display:flex;flex-direction:column;gap:14px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;font:500 13px var(--sans);color:var(--muted)}
+.crumbs a{color:var(--accent);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(30px,4.6vw,46px)/1.05 var(--cond);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:68ch}
+.overall{display:flex;flex-direction:column;gap:6px;max-width:640px}
+.overall .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.overall .row b{color:var(--ink);font-weight:500}
+.bar{height:10px;background:var(--track);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--done);border-radius:5px;transition:width .25s ease}
+.concepts{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip .cc{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.chip.complete .cc{color:var(--done)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip[aria-pressed="true"] .cc{color:var(--surface);opacity:.85}
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.toggle input{accent-color:var(--done);width:16px;height:16px}
+.btn{font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:7px 12px;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.danger{color:var(--danger)}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.tips{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 28px}
+.tips h2{grid-column:1/-1;margin:0;font:600 18px var(--cond)}
+.tips div h3{margin:0 0 2px;font:600 15px var(--sans)}
+.tips div p{margin:0;font-size:14px;color:var(--muted)}
+.plan{display:flex;flex-direction:column;gap:10px}
+.plan h2{margin:0;font:700 24px/1.15 var(--cond);border-bottom:2px solid var(--ink);padding-bottom:8px}
+.plan p{margin:0;color:var(--muted);font-size:14px;max-width:75ch}
+.scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--rule)}
+th{font:500 12px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+td.day{font:500 13px var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+td.mock{color:var(--accent);font-weight:500}
+#main{display:flex;flex-direction:column;gap:40px}
+section.concept{display:flex;flex-direction:column;gap:8px;scroll-margin-top:16px}
+.c-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.c-head h2{margin:0;font:700 24px/1.15 var(--cond);flex:1 1 240px}
+.c-head .dc{font:13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.pattern{background:var(--accent-soft);border-radius:8px;padding:12px 14px;font-size:14px;max-width:none}
+.pattern b{font-weight:600}
+.pattern ul{margin:6px 0 0;padding-left:20px}
+.sub{margin:10px 0 2px;font:600 13px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+ol.probs{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+ol.probs>li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 10px;padding:10px 14px 10px 10px;border-bottom:1px solid var(--rule);align-items:start}
+ol.probs>li:last-child{border-bottom:0}
+ol.probs>li.done{background:linear-gradient(90deg,var(--done-soft),transparent 70%)}
+.chk{width:18px;height:18px;margin:2px 0 0 4px;accent-color:var(--done);cursor:pointer}
+.pt{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;min-width:0}
+.pt a{color:var(--ink);text-decoration:none;font-weight:500}
+.pt a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.pt a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pt .ft{font-weight:500}
+li.done .pt a,li.done .pt .ft{color:var(--muted)}
+.num{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.diff{font:500 11px var(--mono);border-radius:3px;padding:2px 7px;white-space:nowrap;letter-spacing:.02em}
+.diff.E{color:var(--easy);background:var(--easy-bg)}.diff.M{color:var(--med);background:var(--med-bg)}.diff.H{color:var(--hard);background:var(--hard-bg)}
+.tag{font:500 10.5px var(--mono);color:var(--accent);background:var(--accent-soft);border-radius:3px;padding:2px 7px;letter-spacing:.02em;white-space:nowrap}
+.desc{grid-column:2/-1;margin:0;font-size:14px;color:var(--muted);max-width:75ch}
+details.hint{grid-column:2/-1;font-size:13.5px;color:var(--muted)}
+details.hint summary{cursor:pointer;color:var(--accent);font-size:13px;width:max-content}
+details.hint summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details.hint p{margin:4px 0 0;max-width:75ch}
+details.hint ol{margin:4px 0 0;padding-left:20px;max-width:75ch}
+details.code summary{cursor:pointer;color:var(--accent);font-size:13px;width:max-content}
+pre{margin:6px 0 0;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13px/1.5 var(--mono)}
+.empty{color:var(--muted);font-size:14px;padding:4px 0}
+footer{border-top:1px solid var(--rule);padding-top:16px;font-size:13px;color:var(--muted)}
+footer p{margin:0 0 6px;max-width:80ch}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Interview Prep 101</a><span aria-hidden="true">/</span><span>Figma</span><span aria-hidden="true">·</span><a href="../coding/">Coding</a><span aria-hidden="true">·</span><a href="../system-design/">System Design</a><span aria-hidden="true">·</span><a href="../practice/">Practice Questions</a></nav>
+    <span class="eyebrow">Company prep · Figma coding round</span>
+    <h1>Figma Coding Prep</h1>
+    <p class="lede">Figma's coding problems model pieces of its own editor: undo history, the layers panel, frames on a canvas, sharing permissions. They're built in stages, and interviewers weigh clean class design and clear narration as much as the algorithm. This page groups reported problem types by pattern, with Figma-style prompts to practice and LeetCode problems that build the same skills, plus a 13-day plan.</p>
+    <div class="overall" aria-live="polite">
+      <div class="row"><span id="ovLabel"></span><span id="ovPct"></span></div>
+      <div class="bar"><i id="ovBar"></i></div>
+    </div>
+    <nav class="concepts" id="concepts" aria-label="Categories"></nav>
+    <div class="tools">
+      <label class="toggle" for="hideDone"><input id="hideDone" type="checkbox"> Hide completed</label>
+      <button class="btn danger" id="resetBtn" type="button">Reset</button>
+      <span class="confirm" id="resetConfirm" hidden>Untick everything on this page? <button class="btn danger" id="resetYes" type="button">Yes, reset</button><button class="btn" id="resetNo" type="button">Cancel</button></span>
+    </div>
+  </header>
+
+  <section class="tips" aria-label="How the round works">
+    <h2>How to run each problem</h2>
+    <div><h3>Clarify, then design</h3><p>Restate the problem and ask about edge cases. Before coding, name your class, its methods and data structures, and say how a follow-up like batching or redo would fit.</p></div>
+    <div><h3>Simple and correct first</h3><p>Build part 1 cleanly, then extend. A finished part 1 with a clear plan for part 2 beats a half-built clever solution.</p></div>
+    <div><h3>Talk the whole time</h3><p>Narrate what each line does and why. Reported rejections cite silent coding more than wrong answers. If you're stuck, say what you're trying.</p></div>
+    <div><h3>Test out loud</h3><p>Walk one normal and one edge case through your code: empty input, a missing key, undo with nothing to undo, ties when sorting. Close with time and space for each method.</p></div>
+  </section>
+
+  <section class="plan" aria-labelledby="plan-h">
+    <h2 id="plan-h">13-day plan</h2>
+    <p>About two hours a day. Undo/redo comes first because it's the most often reported problem type. Do each mock out loud, timed at 45 minutes, in the editor you'll use on the day.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Days</th><th>Focus</th><th>Do</th><th>Mock</th></tr></thead>
+        <tbody>
+          <tr><td class="day">1–2</td><td>Warm-up: class design</td><td>The class-design warm-up set; write a small class with tests from scratch</td><td></td></tr>
+          <tr><td class="day">3–4</td><td>Undo/redo and history</td><td>Document layer history, step by step; the undo/redo LeetCode set; store diffs, not snapshots</td><td class="mock">Document layer: apply → undo → batch → redo</td></tr>
+          <tr><td class="day">5–6</td><td>Trees and hierarchy</td><td>Frame tree queries; indented tokens to nested lists; the tree LeetCode set</td><td></td></tr>
+          <tr><td class="day">7–8</td><td>Canvas geometry</td><td>Display sort; resizing stacked rectangles; the geometry LeetCode set</td><td class="mock">Layers panel with undo and redo</td></tr>
+          <tr><td class="day">9–10</td><td>Graphs and permissions</td><td>Permission inheritance with cycles; reachability without a direct edge; pixel islands</td><td class="mock">Permission inheritance</td></tr>
+          <tr><td class="day">11</td><td>Full rehearsal</td><td>Two unseen problems back to back, 45 minutes each, narrating throughout</td><td class="mock">Interviewer-style, with a follow-up added mid-way</td></tr>
+          <tr><td class="day">12</td><td>Light review</td><td>Re-read your notes and your undo/redo solution; check your setup; rest</td><td></td></tr>
+          <tr><td class="day">13</td><td>Interview</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <main id="main"></main>
+
+  <footer>
+    <p>Problem types are summarized from candidate interview reports shared publicly on Glassdoor, PracHub and 1point3acres through November 2026. The Figma-style prompts are written for this page to practice those patterns; they are not Figma's actual questions, and this is not an official Figma resource.</p>
+    <p>Your progress is saved in this browser only. Part of <a href="../">Interview Prep 101</a>.</p>
+  </footer>
+</div>
+
+<script>
+// Each category: name, pattern (HTML), figma: [slug, title, description, [stages]], lc: [slug, number, title, difficulty, hint], code (optional)
+const CATS=[
+ {name:"Class design warm-up",
+  pattern:"<b>Pattern:</b> a small class with several methods that share state. Pick the data structures from what each method must do quickly, and keep every method's cost in mind.",
+  figma:[],
+  lc:[
+   ["design-hashmap",706,"Design HashMap","E","An array of buckets, each a list of (key, value) pairs. Hash with key % size; update in place if the key exists."],
+   ["min-stack",155,"Min Stack","M","Keep a second stack of the running minimum, pushed alongside every value, so getMin is O(1)."],
+   ["design-underground-system",1396,"Design Underground System","M","Map of card id → (start station, time) for open trips, and map of (start, end) → (total time, count) for averages."]
+  ]},
+ {name:"Undo/redo and history",
+  pattern:"<b>Pattern:</b> two stacks. Each edit pushes its <i>inverse</i> (the key's old value) onto the undo stack; undo pops it, restores the old value and pushes the reverse onto the redo stack. A new edit clears redo. A batch is one undo entry holding several changes, undone in reverse order.<ul><li>Store diffs, not full copies of the document, to keep memory low.</li><li>Decide how to represent \"key didn't exist\" so undo can delete it again.</li></ul>",
+  figma:[
+   ["fig-document-history","Document layer history","A document holds key/value properties. Build it in stages, keeping every operation fast.",["set(key, value) and get(key).","undo() reverts the last change; a no-op when there's nothing to undo.","redo() re-applies an undone change; any new set() clears the redo history.","begin_batch() and commit_batch(): everything between them undoes and redoes as one step.","Memory: store only what changed per step, never a copy of the whole document."]],
+   ["fig-layers-panel","Layers panel with undo","An ordered list of layer ids, as in the layers panel.",["add(id, index), remove(id) and move(id, new_index).","undo() and redo() for all three operations.","Make remove and move undoable without storing the whole list each time."]],
+   ["fig-text-history","Text editor with grouped undo","A plain-text editor with insert(pos, text) and delete(pos, length).",["Basic insert, delete and get_text().","Undo and redo.","Consecutive typing in one place undoes as a single step."]]
+  ],
+  lc:[
+   ["design-browser-history",1472,"Design Browser History","M","A list plus a current index; visiting truncates everything after the index. The same shape as undo/redo."],
+   ["snapshot-array",1146,"Snapshot Array","M","Per index, store a list of (snap_id, value) changes. get() binary-searches for the last change at or before the snapshot. Diffs, not copies."],
+   ["time-based-key-value-store",981,"Time Based Key-Value Store","M","Map of key → list of (timestamp, value) in time order; binary search for the latest timestamp ≤ the query."],
+   ["lru-cache",146,"LRU Cache","M","Hash map to nodes of a doubly linked list. Move to the front on access; evict from the back."],
+   ["design-a-text-editor",2296,"Design a Text Editor","H","Two stacks of characters, left and right of the cursor. Moving the cursor moves characters between them."]
+  ],
+  code:"class DocumentLayer:\n    def __init__(self):\n        self.props = {}\n        self.undo_stack = []   # each entry: list of (key, old_value)\n        self.redo_stack = []\n        self.batch = None      # open batch, or None\n\n    def set(self, key, value):\n        change = (key, self.props.get(key, MISSING))\n        self.props[key] = value\n        if self.batch is not None:\n            self.batch.append(change)\n        else:\n            self.undo_stack.append([change])\n        self.redo_stack.clear()\n\nMISSING = object()  # marks \"key did not exist\""},
+ {name:"Trees and hierarchy",
+  pattern:"<b>Pattern:</b> Figma files are trees: pages contain frames, frames contain layers. Store children and a parent pointer per node. Walk up for ancestors and depth, down (DFS/BFS) for searches. To build nesting from a flat list with levels, keep a stack of open parents.",
+  figma:[
+   ["fig-frame-tree","Frame hierarchy queries","Frames nest inside frames. Each has an id, a parent id and a rectangle.",["ancestors(id) and depth(id).","Lowest common container of two frames.","Deepest frame that contains a point (x, y)."]],
+   ["fig-nested-text","Indented tokens to nested lists","Rich-text list items arrive as (level, text) tokens in order.",["Build the nested list structure.","Reject input that jumps more than one level deeper at once.","Validate a stream of INDENT and DEDENT tokens: balanced at every point and closed at the end."]]
+  ],
+  lc:[
+   ["valid-parentheses",20,"Valid Parentheses","E","A stack of open brackets; each closer must match the top. Valid if the stack is empty at the end. The same idea as INDENT/DEDENT."],
+   ["decode-string",394,"Decode String","M","Two stacks: counts and partial strings. On ']', pop and repeat. Building nesting from a flat stream."],
+   ["lowest-common-ancestor-of-a-binary-tree",236,"Lowest Common Ancestor of a Binary Tree","M","Recurse: if both sides return a node, this node is the answer. With parent pointers, walk both up using a visited set."],
+   ["flatten-a-multilevel-doubly-linked-list",430,"Flatten a Multilevel Doubly Linked List","M","DFS: splice each child list in after its parent, keeping a stack of 'next' nodes to resume."],
+   ["serialize-and-deserialize-binary-tree",297,"Serialize and Deserialize Binary Tree","H","Preorder with a null marker; deserialize by reading tokens in the same order recursively."]
+  ]},
+ {name:"Canvas geometry",
+  pattern:"<b>Pattern:</b> shapes are rectangles (x, y, width, height). Most problems are a custom sort key with careful tie-breaks, interval overlap on one axis, or a greedy pass that respects constraints such as a minimum size. Spell out the rules for ties and touching edges before coding.",
+  figma:[
+   ["fig-display-sort","Display sort","Order shapes on a page for display or reading.",["Sort left to right, then top to bottom.","Treat shapes whose vertical ranges overlap as the same row.","State and handle exact ties."]],
+   ["fig-resize-stack","Resize stacked rectangles","Rectangles stacked vertically with gaps between them, given as (y, height).",["Change one rectangle's height and shift the ones below so every gap stays the same.","Resize the whole stack to a new total height, sharing the change fairly.","Never let any rectangle go below a minimum height; redistribute what it can't absorb."]]
+  ],
+  lc:[
+   ["rectangle-overlap",836,"Rectangle Overlap","E","Overlap only if the x-ranges and the y-ranges both overlap with positive length."],
+   ["rectangle-area",223,"Rectangle Area","M","Sum of both areas minus the overlap, where overlap width = max(0, min(right edges) − max(left edges))."],
+   ["merge-intervals",56,"Merge Intervals","M","Sort by start; extend the last merged interval while the next one starts before it ends."],
+   ["minimum-number-of-arrows-to-burst-balloons",452,"Minimum Number of Arrows to Burst Balloons","M","Sort by end; shoot at the first end and skip every interval that contains it."],
+   ["car-fleet",853,"Car Fleet","M","Sort by position, closest to the target first; a car joins the fleet ahead if it would arrive no later."]
+  ]},
+ {name:"Graphs and permissions",
+  pattern:"<b>Pattern:</b> sharing in Figma forms a graph: users belong to teams, teams own projects, projects hold files, and files can be shared directly. Access questions are reachability: BFS or DFS with a visited set so cycles can't loop forever. Be explicit about directed vs undirected edges.",
+  figma:[
+   ["fig-permissions","Permission inheritance","Users, teams, folders and files connected by membership and sharing edges, possibly with cycles.",["can_access(user, file).","Return the path that grants access.","Find the smallest set of direct grants that gives a group of users access to a file."]],
+   ["fig-reachability","Reachability without a direct edge","A graph of connected objects.",["Is B reachable from A?","Is B still reachable if the direct edge A → B is removed?","Answer for both directed and undirected graphs."]],
+   ["fig-pixel-islands","Pixel islands","A black-and-white image as a grid of 0s and 1s.",["Count groups of 1s connected up, down, left and right.","Return the size of the largest group.","Count again treating diagonal neighbors as connected."]]
+  ],
+  lc:[
+   ["find-if-path-exists-in-graph",1971,"Find if Path Exists in Graph","E","Build an adjacency list; BFS or DFS from the source with a visited set."],
+   ["number-of-islands",200,"Number of Islands","M","For each unvisited 1, flood-fill its island (DFS/BFS) and count one."],
+   ["course-schedule",207,"Course Schedule","M","Detect a cycle in a directed graph: topological sort by in-degree (Kahn), or DFS with visiting/visited states."],
+   ["clone-graph",133,"Clone Graph","M","BFS or DFS with a map from original node to copy; create each copy once."],
+   ["accounts-merge",721,"Accounts Merge","M","Union-find on emails, or a graph of emails per account with DFS to collect each component."],
+   ["critical-connections-in-a-network",1192,"Critical Connections in a Network","H","Tarjan's bridges: an edge is critical if the lowest discovery time reachable from the child is after the parent's."]
+  ]}
+];
+
+const STORE="figma-prep";
+const pid=n=>n.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+CATS.forEach(c=>c.id=pid(c.name));
+const ALL=[];CATS.forEach(c=>{c.figma.forEach(f=>ALL.push({cat:c.id,slug:f[0]}));c.lc.forEach(r=>ALL.push({cat:c.id,slug:r[0]}))});
+let st={done:new Set(),hide:false,concept:"all"};
+try{const o=JSON.parse(localStorage.getItem(STORE)||"{}");st.done=new Set((o.done||[]).filter(s=>ALL.some(a=>a.slug===s)));st.hide=!!o.hide;st.concept=CATS.some(c=>c.id===o.concept)?o.concept:"all"}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify({done:[...st.done],hide:st.hide,concept:st.concept}))}catch(e){}}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+function cnt(f){const l=ALL.filter(f);return {d:l.filter(a=>st.done.has(a.slug)).length,t:l.length}}
+const chip=(id,label,c)=>`<button type="button" class="chip ${c.t&&c.d===c.t?"complete":""}" data-c="${id}" aria-pressed="${st.concept===id}">${esc(label)} <span class="cc">${c.t&&c.d===c.t?"✓ ":""}${c.d}/${c.t}</span></button>`;
+
+function renderStats(){
+  const all=cnt(()=>true);
+  $("ovLabel").innerHTML=`<b>${all.d}</b> of ${all.t} done`;
+  $("ovPct").textContent=pct(all.d,all.t)+"%";$("ovBar").style.width=pct(all.d,all.t)+"%";
+  $("concepts").innerHTML=chip("all","All categories",all)+CATS.map(c=>chip(c.id,c.name,cnt(a=>a.cat===c.id))).join("");
+  CATS.forEach(c=>{const el=$("dc-"+c.id);if(el){const n=cnt(a=>a.cat===c.id);el.textContent=`${n.d} / ${n.t} done`}});
+}
+const box=(slug,label)=>{const done=st.done.has(slug);return `<input class="chk" type="checkbox" id="p-${slug}" data-slug="${slug}" ${done?"checked":""} aria-label="Mark ${esc(label)} as done">`};
+function render(){
+  $("hideDone").checked=st.hide;
+  $("main").innerHTML=CATS.map(c=>{
+    if(st.concept!=="all"&&st.concept!==c.id)return "";
+    const keep=s=>!st.hide||!st.done.has(s);
+    const fig=c.figma.filter(f=>keep(f[0])),lc=c.lc.filter(r=>keep(r[0]));
+    let h=`<section class="concept" id="c-${c.id}"><div class="c-head"><h2>${esc(c.name)}</h2><span class="dc" id="dc-${c.id}"></span></div><div class="pattern">${c.pattern}</div>`;
+    if(c.code)h+=`<details class="code"><summary>Starter shape (Python)</summary><pre><code>${esc(c.code)}</code></pre></details>`;
+    if(c.figma.length){
+      h+=`<p class="sub">Figma-style practice</p>`;
+      h+=fig.length?`<ol class="probs">`+fig.map(([slug,t,d,stages])=>`<li class="${st.done.has(slug)?"done":""}">${box(slug,t)}<span class="pt"><span class="ft">${esc(t)}</span></span><span class="tag">${stages.length} stages</span><p class="desc">${esc(d)}</p><details class="hint"><summary>Stages</summary><ol>${stages.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></details></li>`).join("")+`</ol>`:`<p class="empty">All done here.</p>`;
+    }
+    h+=`<p class="sub">LeetCode practice</p>`;
+    h+=lc.length?`<ol class="probs">`+lc.map(([slug,num,t,df,hint])=>`<li class="${st.done.has(slug)?"done":""}">${box(slug,t)}<span class="pt"><span class="num">${num}.</span><a href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener">${esc(t)}</a></span><span class="diff ${df}">${{E:"Easy",M:"Medium",H:"Hard"}[df]}</span><details class="hint"><summary>Hint</summary><p>${esc(hint)}</p></details></li>`).join("")+`</ol>`:`<p class="empty">All done here.</p>`;
+    return h+`</section>`;
+  }).join("");
+  renderStats();
+}
+document.addEventListener("change",e=>{
+  if(e.target.matches(".chk")){const s=e.target.dataset.slug;if(e.target.checked)st.done.add(s);else st.done.delete(s);save();
+    if(st.hide&&e.target.checked){render();return}
+    e.target.closest("li").classList.toggle("done",e.target.checked);renderStats();}
+});
+$("concepts").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;st.concept=b.dataset.c;save();render();$("main").scrollIntoView({block:"start"})});
+$("hideDone").addEventListener("change",e=>{st.hide=e.target.checked;save();render()});
+$("resetBtn").addEventListener("click",()=>{$("resetConfirm").hidden=false});
+$("resetNo").addEventListener("click",()=>{$("resetConfirm").hidden=true});
+$("resetYes").addEventListener("click",()=>{st.done.clear();save();$("resetConfirm").hidden=true;render()});
+render();
+</script>
+</body>
+</html>
